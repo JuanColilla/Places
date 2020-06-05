@@ -8,6 +8,10 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Se requiere acceso a la fototeca para poder obtener la fotografía deseada.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Se requiere para acceder a la cámara y realizar la fotografía deseada.</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

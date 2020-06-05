@@ -22,6 +22,8 @@ class PlacesViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -37,27 +39,27 @@ class PlacesViewController: UICollectionViewController {
     }
     
     
-    @IBAction func goBack (segue : UIStoryboardSegue) {
-        if segue.identifier == "Save" {
-            manager.saveNewPlace(nombre: nombre, description: descripcion, location: location)
-        } else if segue.identifier == "Update" {
-            manager.updatePlace(nombre: nombre, description: descripcion, location: location)
-        }
-        placesSaved = manager.fetchSavedPlaces()
-        collectionView.reloadData()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Detail" {
-            if let cell = sender as? PlaceCell {
-                if let indexPath = collectionView.indexPath(for: cell) {
-                    if let navigationController = segue.destination as?  UINavigationController, let segueDestinationEPVC = navigationController.visibleViewController as? PlaceDetailsViewController {
-                        segueDestinationEPVC.placeSelected = manager.placesSaved[indexPath.row]
-                    }
-                }
-            }
-        }
-    }
+//    @IBAction func goBack (segue : UIStoryboardSegue) {
+//        if segue.identifier == "Save" {
+//            manager.saveNewPlace(nombre: nombre, description: descripcion, location: location)
+//        } else if segue.identifier == "Update" {
+//            manager.updatePlace(nombre: nombre, description: descripcion, location: location)
+//        }
+//        placesSaved = manager.fetchSavedPlaces()
+//        collectionView.reloadData()
+//    }
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "Detail" {
+//            if let cell = sender as? PlaceCell {
+//                if let indexPath = collectionView.indexPath(for: cell) {
+//                    if let navigationController = segue.destination as?  UINavigationController, let segueDestinationEPVC = navigationController.visibleViewController as? PlaceDetailsViewController {
+//                        segueDestinationEPVC.placeSelected = manager.placesSaved[indexPath.row]
+//                    }
+//                }
+//            }
+//        }
+//    }
     
     /*
      // MARK: - Navigation
@@ -88,7 +90,8 @@ class PlacesViewController: UICollectionViewController {
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PlaceCell
         let item: Place = placesSaved[indexPath.row]
         
-        cell.cellImageView.image = UIImage(named: "wendys")
+        cell.cellImage.image = manager.data2Image(data: item.imagen!)
+        cell.cellLabel.text = item.nombre ?? "None"
         
         return cell
     }

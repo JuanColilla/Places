@@ -18,8 +18,9 @@
 		0D85A67324817ADE00CCA1DD /* CoreDataBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A67224817ADE00CCA1DD /* CoreDataBridge.swift */; };
 		0D85A67624817B0B00CCA1DD /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A67524817B0B00CCA1DD /* LocationManager.swift */; };
 		0D85A67824817B1D00CCA1DD /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A67724817B1D00CCA1DD /* NotificationManager.swift */; };
-		0D85A67A24817B3300CCA1DD /* MetadataExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A67924817B3300CCA1DD /* MetadataExtractor.swift */; };
 		0D85A67C24817B6B00CCA1DD /* PlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A67B24817B6B00CCA1DD /* PlaceCell.swift */; };
+		0D97EF4524893DAF00D2AC92 /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D97EF4424893DAF00D2AC92 /* NewPlaceViewController.swift */; };
+		0D97EF4724894CCB00D2AC92 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D97EF4624894CCB00D2AC92 /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +37,9 @@
 		0D85A67224817ADE00CCA1DD /* CoreDataBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataBridge.swift; sourceTree = "<group>"; };
 		0D85A67524817B0B00CCA1DD /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0D85A67724817B1D00CCA1DD /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		0D85A67924817B3300CCA1DD /* MetadataExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataExtractor.swift; sourceTree = "<group>"; };
 		0D85A67B24817B6B00CCA1DD /* PlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCell.swift; sourceTree = "<group>"; };
+		0D97EF4424893DAF00D2AC92 /* NewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
+		0D97EF4624894CCB00D2AC92 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				0D85A65D248178C700CCA1DD /* PlacesViewController.swift */,
 				0D85A67B24817B6B00CCA1DD /* PlaceCell.swift */,
 				0D2502AB24828D550096ED59 /* PlaceDetailsViewController.swift */,
+				0D97EF4424893DAF00D2AC92 /* NewPlaceViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -106,7 +109,7 @@
 				0D85A67224817ADE00CCA1DD /* CoreDataBridge.swift */,
 				0D85A67524817B0B00CCA1DD /* LocationManager.swift */,
 				0D85A67724817B1D00CCA1DD /* NotificationManager.swift */,
-				0D85A67924817B3300CCA1DD /* MetadataExtractor.swift */,
+				0D97EF4624894CCB00D2AC92 /* File.swift */,
 				0D85A662248178C700CCA1DD /* PlacesIB.xcdatamodeld */,
 			);
 			path = Model;
@@ -184,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D85A664248178C700CCA1DD /* PlacesIB.xcdatamodeld in Sources */,
+				0D97EF4524893DAF00D2AC92 /* NewPlaceViewController.swift in Sources */,
 				0D85A67C24817B6B00CCA1DD /* PlaceCell.swift in Sources */,
 				0D85A65E248178C700CCA1DD /* PlacesViewController.swift in Sources */,
 				0D85A67624817B0B00CCA1DD /* LocationManager.swift in Sources */,
@@ -191,8 +195,8 @@
 				0D85A67824817B1D00CCA1DD /* NotificationManager.swift in Sources */,
 				0D2502AC24828D550096ED59 /* PlaceDetailsViewController.swift in Sources */,
 				0D85A65C248178C700CCA1DD /* SceneDelegate.swift in Sources */,
+				0D97EF4724894CCB00D2AC92 /* File.swift in Sources */,
 				0D85A67324817ADE00CCA1DD /* CoreDataBridge.swift in Sources */,
-				0D85A67A24817B3300CCA1DD /* MetadataExtractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

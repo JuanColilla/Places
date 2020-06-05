@@ -16,6 +16,7 @@ class CoreDataBridge {
      
      init() {}
     
+    
     func saveContext(){
         do {
             try managedObjectViewContext.save()
@@ -24,6 +25,8 @@ class CoreDataBridge {
             print("Fallo al guardar..")
         }
     }
+    
+    
     
      // Guardar un nuevo Place.
     func saveNewPlace(imagen: UIImage?, nombre: String, descripcion: String, categoria: String, latitud: Double, longitud: Double) {
@@ -51,6 +54,9 @@ class CoreDataBridge {
              }
          }
      }
+    
+    
+    
      
      // Borrar todos los Places guardados.
      func deleteAllPlaces(){
@@ -60,6 +66,7 @@ class CoreDataBridge {
          saveContext()
      }
      
+    
      // Borrar un Place en concreto.
      func deletePlace(nombre: String){
          for object in fetchSavedPlaces() {
@@ -71,6 +78,8 @@ class CoreDataBridge {
          saveContext()
      }
      
+    
+    
      // Recuperar un Place específico.
      func fetchPlaceByID(id: UUID) -> Place {
          for object in fetchSavedPlaces() {
@@ -83,6 +92,8 @@ class CoreDataBridge {
          return emptyPlace
      }
      
+    
+    
      // Recuperar la lista de Places guardados.
       func fetchSavedPlaces() -> [Place] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Place")
@@ -91,17 +102,42 @@ class CoreDataBridge {
          
          do {
              placesSaved = try managedObjectViewContext.fetch(request) as! [Place]
-         } catch {
-             print("Error recuperando los Places guardados...")
+         } catch let error {
+            print("Error recuperando los Places guardados...\(error.localizedDescription)")
          }
         return placesSaved
      }
      
-     func updatePlace(nombre: String, description: String, location: String) {
+    
+    
+    func updatePlace(place: Place, nombre: String, descripcion: String, location: Double, category: String) {
+        if place.nombre != nombre {
+            place.nombre = nombre
+        }
+        if place.descripcion != descripcion {
+            place.descripcion = descripcion
+        }
+//        if place.location != location {
+//            place.location = location
+//        }
+        if place.nombre != nombre {
+            place.nombre = nombre
+        }
+        
          
      }
     
     
+    
+    func image2Data(image: UIImage) -> Data {
+        return image.jpegData(compressionQuality: 1)!
+    }
+    
+    
+    
+    func data2Image(data: Data) -> UIImage{
+        return UIImage(data: data)!
+    }
     
     
 }
