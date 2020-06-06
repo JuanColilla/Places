@@ -12,7 +12,6 @@
 		0D85A65C248178C700CCA1DD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A65B248178C700CCA1DD /* SceneDelegate.swift */; };
 		0D85A65E248178C700CCA1DD /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A65D248178C700CCA1DD /* PlacesViewController.swift */; };
 		0D85A661248178C700CCA1DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D85A65F248178C700CCA1DD /* Main.storyboard */; };
-		0D85A664248178C700CCA1DD /* PlacesIB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A662248178C700CCA1DD /* PlacesIB.xcdatamodeld */; };
 		0D85A666248178CA00CCA1DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D85A665248178CA00CCA1DD /* Assets.xcassets */; };
 		0D85A669248178CA00CCA1DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D85A667248178CA00CCA1DD /* LaunchScreen.storyboard */; };
 		0D85A67324817ADE00CCA1DD /* CoreDataBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A67224817ADE00CCA1DD /* CoreDataBridge.swift */; };
@@ -20,17 +19,16 @@
 		0D85A67824817B1D00CCA1DD /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A67724817B1D00CCA1DD /* NotificationManager.swift */; };
 		0D85A67C24817B6B00CCA1DD /* PlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A67B24817B6B00CCA1DD /* PlaceCell.swift */; };
 		0D97EF4524893DAF00D2AC92 /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D97EF4424893DAF00D2AC92 /* NewPlaceViewController.swift */; };
-		0D97EF4724894CCB00D2AC92 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D97EF4624894CCB00D2AC92 /* File.swift */; };
+		0D97EF49248BC38E00D2AC92 /* Places.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 0D97EF48248BC38D00D2AC92 /* Places.xcdatamodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0D2502AB24828D550096ED59 /* PlaceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewController.swift; sourceTree = "<group>"; };
+		0D2502AB24828D550096ED59 /* PlaceDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewController.swift; sourceTree = "<group>"; };
 		0D85A656248178C700CCA1DD /* Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Places.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D85A659248178C700CCA1DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D85A65B248178C700CCA1DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0D85A65D248178C700CCA1DD /* PlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
 		0D85A660248178C700CCA1DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0D85A663248178C700CCA1DD /* PlacesIB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PlacesIB.xcdatamodel; sourceTree = "<group>"; };
 		0D85A665248178CA00CCA1DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D85A668248178CA00CCA1DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D85A66A248178CA00CCA1DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -39,7 +37,7 @@
 		0D85A67724817B1D00CCA1DD /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		0D85A67B24817B6B00CCA1DD /* PlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCell.swift; sourceTree = "<group>"; };
 		0D97EF4424893DAF00D2AC92 /* NewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
-		0D97EF4624894CCB00D2AC92 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		0D97EF48248BC38D00D2AC92 /* Places.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = Places.xcdatamodel; path = Places.xcdatamodeld/Places.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,8 +107,7 @@
 				0D85A67224817ADE00CCA1DD /* CoreDataBridge.swift */,
 				0D85A67524817B0B00CCA1DD /* LocationManager.swift */,
 				0D85A67724817B1D00CCA1DD /* NotificationManager.swift */,
-				0D97EF4624894CCB00D2AC92 /* File.swift */,
-				0D85A662248178C700CCA1DD /* PlacesIB.xcdatamodeld */,
+				0D97EF48248BC38D00D2AC92 /* Places.xcdatamodel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -186,7 +183,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D85A664248178C700CCA1DD /* PlacesIB.xcdatamodeld in Sources */,
 				0D97EF4524893DAF00D2AC92 /* NewPlaceViewController.swift in Sources */,
 				0D85A67C24817B6B00CCA1DD /* PlaceCell.swift in Sources */,
 				0D85A65E248178C700CCA1DD /* PlacesViewController.swift in Sources */,
@@ -195,7 +191,7 @@
 				0D85A67824817B1D00CCA1DD /* NotificationManager.swift in Sources */,
 				0D2502AC24828D550096ED59 /* PlaceDetailsViewController.swift in Sources */,
 				0D85A65C248178C700CCA1DD /* SceneDelegate.swift in Sources */,
-				0D97EF4724894CCB00D2AC92 /* File.swift in Sources */,
+				0D97EF49248BC38E00D2AC92 /* Places.xcdatamodel in Sources */,
 				0D85A67324817ADE00CCA1DD /* CoreDataBridge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,19 +392,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		0D85A662248178C700CCA1DD /* PlacesIB.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				0D85A663248178C700CCA1DD /* PlacesIB.xcdatamodel */,
-			);
-			currentVersion = 0D85A663248178C700CCA1DD /* PlacesIB.xcdatamodel */;
-			path = PlacesIB.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 0D85A64E248178C700CCA1DD /* Project object */;
 }

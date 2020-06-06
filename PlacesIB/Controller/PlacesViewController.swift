@@ -12,7 +12,7 @@ class PlacesViewController: UICollectionViewController {
     
     private let reuseIdentifier = "customCell"
     let manager: CoreDataBridge = CoreDataBridge()
-    var placesSaved: [Place] = [Place()] // Problema con el init de la clase Place, no corresponde con el adecuado de NSManagerObject, revisar curso de CoreData.
+    var placesSaved: [Place] = [Place]() // Problema con el init de la clase Place, no corresponde con el adecuado de NSManagerObject, revisar curso de CoreData.
     
     // DAR VALOR A TRAVÉS DE LA CONSULTA AL COREDATA
     
@@ -22,6 +22,12 @@ class PlacesViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
         
         placesSaved = manager.fetchSavedPlaces()
+        collectionView.reloadData()
+        print(placesSaved.count)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         collectionView.reloadData()
     }
     
@@ -47,6 +53,9 @@ class PlacesViewController: UICollectionViewController {
         cell.cellImage.image = manager.data2Image(data: item.imagen!)
         cell.cellLabel.text = item.nombre ?? "Place"
         
+        cell.layer.masksToBounds = true
+        cell.layer.cornerRadius = 10
+        
         return cell
     }
     
@@ -57,37 +66,24 @@ class PlacesViewController: UICollectionViewController {
     //    }
         
         
-    //    @IBAction func goBack (segue : UIStoryboardSegue) {
-    //        if segue.identifier == "Save" {
-    //            manager.saveNewPlace(nombre: nombre, description: descripcion, location: location)
-    //        } else if segue.identifier == "Update" {
-    //            manager.updatePlace(nombre: nombre, description: descripcion, location: location)
-    //        }
-    //        placesSaved = manager.fetchSavedPlaces()
-    //        collectionView.reloadData()
-    //    }
-    //
-//        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//            if segue.identifier == "newPlace" {
-//                if let cell = sender as? PlaceCell {
-//                    if let indexPath = collectionView.indexPath(for: cell) {
-//                        if let navigationController = segue.destination as?  UINavigationController, let segueDestinationNPVC = navigationController.visibleViewController as? NewPlaceViewController {
-//                            segueDestinationNPVC.place = Place.init()
-//                        }
-//                    }
-//                }
-//            }
-//        }
-        
-        /*
-         // MARK: - Navigation
-         
-         // In a storyboard-based application, you will often want to do a little preparation before navigation
-         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using [segue destinationViewController].
-         // Pass the selected object to the new view controller.
-         }
-         */
+        @IBAction func goBack (segue : UIStoryboardSegue) {
+            placesSaved = manager.fetchSavedPlaces()
+            collectionView.reloadData()
+        }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "placeInfo" {
+            if let cell = sender as? PlaceCell {
+                if let destinationViewController = segue.destination as? PlaceDetailsViewController {
+                    if let indexPath = collectionView.indexPath(for: cell) {
+                        destinationViewController.place = placesSaved[indexPath.row]
+                    }
+                    
+                }
+                
+            }
+        }
+    }
     
 }
 

@@ -20,7 +20,6 @@ class NewPlaceViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var categoryLabel: UILabel!
     
     let coreDataBridge: CoreDataBridge = CoreDataBridge()
-    let place: Place = Place()
     let locationManager: LocationManager = LocationManager()
     
     override func viewDidLoad() {
@@ -63,15 +62,26 @@ class NewPlaceViewController: UIViewController, UIImagePickerControllerDelegate,
     
     }
     
-    @IBAction func saveNewPlace(_ sender: UIBarButtonItem) {
+        
+    
+    func createPlace() {
+        let place = Place.init(context: coreDataBridge.getContext())
+        place.id = UUID()
         place.imagen = coreDataBridge.image2Data(image: placeImageView.image!)
         place.nombre = placeNameLabel.text!
         place.descripcion = placeDescriptionTextFlield.text!
         place.latitud = placeLocationMapView.centerCoordinate.latitude
         place.longitud = placeLocationMapView.centerCoordinate.longitude
         
-        coreDataBridge.saveNewPlace(place: place)
+        coreDataBridge.saveContext()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Save" {
+            createPlace()
+        }
+    }
+    
     
     
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -139,16 +149,5 @@ class NewPlaceViewController: UIViewController, UIImagePickerControllerDelegate,
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         locationManager.checkUserPermissions()
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

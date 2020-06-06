@@ -2,12 +2,12 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Place" representedClassName=".Place" syncable="YES" codeGenerationType="class">
         <attribute name="categoria" optional="YES" attributeType="String"/>
-        <attribute name="descripcion" optional="YES" attributeType="String"/>
+        <attribute name="descripcion" attributeType="String" defaultValueString="Descripción"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="imagen" optional="YES" attributeType="Binary"/>
         <attribute name="latitud" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitud" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="nombre" optional="YES" attributeType="String"/>
+        <attribute name="nombre" attributeType="String" defaultValueString="Place Name"/>
     </entity>
     <elements>
         <element name="Place" positionX="-63" positionY="-18" width="128" height="148"/>
