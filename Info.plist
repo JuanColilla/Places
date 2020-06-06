@@ -8,10 +8,6 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Se requiere acceso a la fototeca para poder obtener la fotografía deseada.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Se requiere para acceder a la cámara y realizar la fotografía deseada.</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -19,11 +15,17 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Se requiere acceso a la fototeca para poder obtener la fotografía deseada y la ubicación donde se tomó.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Se requiere para acceso a la cámara para realizar la fotografía deseada.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Se requiere acceso a tu ubicación para saber dónde ubicar el sitio que deseas guardar.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -54,8 +56,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

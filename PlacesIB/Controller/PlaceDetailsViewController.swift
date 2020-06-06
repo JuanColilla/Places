@@ -48,10 +48,11 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
     
     }
     
+    
+    
     private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        let assets = info[UIImagePickerController.InfoKey.phAsset.rawValue] as? PHAsset
-        assets?.location
+        //let assets = info[UIImagePickerController.InfoKey.phAsset.rawValue] as? PHAsset
         
         let image = info[UIImagePickerController.InfoKey.originalImage.rawValue] as! UIImage
         placeImageView.image = image

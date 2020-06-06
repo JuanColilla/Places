@@ -25,7 +25,7 @@
 
 /* Begin PBXFileReference section */
 		0D2502AB24828D550096ED59 /* PlaceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewController.swift; sourceTree = "<group>"; };
-		0D85A656248178C700CCA1DD /* PlacesIB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlacesIB.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D85A656248178C700CCA1DD /* Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Places.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D85A659248178C700CCA1DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D85A65B248178C700CCA1DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0D85A65D248178C700CCA1DD /* PlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 		0D85A657248178C700CCA1DD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0D85A656248178C700CCA1DD /* PlacesIB.app */,
+				0D85A656248178C700CCA1DD /* Places.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -132,7 +132,7 @@
 			);
 			name = PlacesIB;
 			productName = PlacesIB;
-			productReference = 0D85A656248178C700CCA1DD /* PlacesIB.app */;
+			productReference = 0D85A656248178C700CCA1DD /* Places.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -347,8 +347,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.JuanColilla.PlacesIB;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 0.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JuanColilla.Places;
+				PRODUCT_NAME = Places;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -365,8 +366,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.JuanColilla.PlacesIB;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = 0.5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JuanColilla.Places;
+				PRODUCT_NAME = Places;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -13,6 +13,7 @@ import UIKit
 class CoreDataBridge {
     
     let managedObjectViewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var placesSaved: [Place] = [Place()]
      
      init() {}
     
@@ -29,30 +30,18 @@ class CoreDataBridge {
     
     
      // Guardar un nuevo Place.
-    func saveNewPlace(imagen: UIImage?, nombre: String, descripcion: String, categoria: String, latitud: Double, longitud: Double) {
-         var canISave: Bool = false
-         if let entity = NSEntityDescription.entity(forEntityName: "Place", in: managedObjectViewContext ){
-             
-             let newPlace = NSManagedObject(entity: entity, insertInto: managedObjectViewContext)
-             
-             newPlace.setValue(nombre, forKey: "nombre")
-             newPlace.setValue(descripcion, forKey: "descripcion")
-              // Cambiar
-             //save the changes
-             
-             for object in fetchSavedPlaces() {
-                 if object.nombre != nombre {
-                     canISave = true
-                 } else {
-                     canISave = false
-                     print("El objeto ya existía, no se puede guardar.")
-                 }
-             }
-             
-             if canISave {
-              saveContext()
-             }
-         }
+    func saveNewPlace(place: Place) {
+        let entity = NSEntityDescription.insertNewObject(forEntityName: "Place", into: managedObjectViewContext) as! Place
+        
+        entity.id = place.id
+        entity.imagen = place.imagen
+        entity.nombre = place.nombre
+        entity.descripcion = place.descripcion
+        entity.latitud = place.latitud
+        entity.longitud = place.longitud
+        
+        saveContext()
+        
      }
     
     
@@ -97,8 +86,6 @@ class CoreDataBridge {
      // Recuperar la lista de Places guardados.
       func fetchSavedPlaces() -> [Place] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Place")
-        var placesSaved: [Place] = [Place()]
-        
          
          do {
              placesSaved = try managedObjectViewContext.fetch(request) as! [Place]
