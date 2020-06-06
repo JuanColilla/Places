@@ -78,12 +78,9 @@ class PlacesViewController: UICollectionViewController {
                     if let indexPath = collectionView.indexPath(for: cell) {
                         destinationViewController.place = placesSaved[indexPath.row]
                     }
-                    
                 }
-                
             }
         }
     }
-    
 }
 

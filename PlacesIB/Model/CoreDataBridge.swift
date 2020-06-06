@@ -15,8 +15,7 @@ class CoreDataBridge {
     let managedObjectViewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var placesSaved: [Place] = [Place]()
      
-     init() {}
-    
+    init() {}
     
     func saveContext(){
         do {
@@ -79,11 +78,8 @@ class CoreDataBridge {
         return image.jpegData(compressionQuality: 1)!
     }
     
-    
-    
     func data2Image(data: Data) -> UIImage{
         return UIImage(data: data)!
     }
-    
     
 }

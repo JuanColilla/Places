@@ -67,11 +67,10 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
         }))
         actionSheet.addAction(UIAlertAction(title: "Fototeca", style: .default, handler: { (action: UIAlertAction) in
             imagePickerController.sourceType = .photoLibrary
-            
             self.present(imagePickerController, animated: true, completion: .none)
         }))
-        actionSheet.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: nil))
         
+        actionSheet.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: nil))
         self.present(actionSheet, animated: true, completion: nil)
         
     }
@@ -82,7 +81,7 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         
         
-        // Preguntar antes de extraer los metadatos u obtener la ubicación si se desea establecer esta como ubicación del sitio, dado que puede cambiar la imagen pero puede no querer cambiar la localización.
+        // Preguntar antes de extraer los metadatos u obtener la ubicación si se desea establecer esta como ubicación del sitio, dado que puede cambiar la imagen pero puede no querer cambiar la localización. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! TO IMPROVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         
         let placeMapAnnotations = placeLocationMapView.annotations
         if !placeMapAnnotations.isEmpty {
@@ -91,6 +90,7 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
         
         if picker.sourceType == .photoLibrary {
             let metadata = info[UIImagePickerController.InfoKey.phAsset] as! PHAsset
+            
             if let location = metadata.location {
                 let locationPin = MKPointAnnotation()
                 locationPin.coordinate = location.coordinate
@@ -101,12 +101,10 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
                 placeLocationMapView.setRegion(region, animated: true)
                 placeLocationMapView.addAnnotation(locationPin)
                 placeLocationMapView.selectAnnotation(locationPin, animated: true)
-                
-                print("Coordenadas adquiridas.")
-            } else {
-                print("Sin coordenadas")
-            }
+                }
+            
         } else {
+            
             if let location = locationManager.getUserCurrentLocation(){
                 let locationPin = MKPointAnnotation()
                 locationPin.coordinate = location.coordinate
@@ -118,9 +116,7 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
                 placeLocationMapView.addAnnotation(locationPin)
                 placeLocationMapView.selectAnnotation(locationPin, animated: true)
                 
-                
             }
-            
         }
         
         placeImageView.image = image
@@ -147,6 +143,7 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "updatePlace" {
             let placeToUpdate: Place = coreDataBridge.fetchPlaceByID(id: place.id!)
+            
             placeToUpdate.imagen = coreDataBridge.image2Data(image: placeImageView.image!)
             placeToUpdate.nombre = placeNameLabel.text ?? "Sin nombre"
             placeToUpdate.descripcion = placeDescriptionText.text ?? "Sin descripción."
@@ -156,5 +153,4 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
             coreDataBridge.saveContext()
         }
     }
-
 }
