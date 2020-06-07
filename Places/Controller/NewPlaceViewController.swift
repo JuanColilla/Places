@@ -17,8 +17,9 @@ class NewPlaceViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var placeNameLabel: UITextField!
     @IBOutlet weak var placeDescriptionTextFlield: UITextView!
     @IBOutlet weak var placeLocationMapView: MKMapView!
-    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var placeCategoryTextField: UITextField!
     
+    let picker = UIPickerView()
     let coreDataBridge: CoreDataBridge = CoreDataBridge()
     let locationManager: LocationManager = LocationManager()
     
@@ -28,10 +29,48 @@ class NewPlaceViewController: UIViewController, UIImagePickerControllerDelegate,
         locationManager.setDelegate(delegate: self)
         locationManager.checkUserPermissions()
         PHPhotoLibrary.requestAuthorization({ status in})
+        
+        picker.dataSource = self
+        picker.delegate = self
+        
+        placeCategoryTextField.inputView = picker
         // Do any additional setup after loading the view.
     }
     
-    // Boton de Aceptar que permita guardar el nuevo Place dentro de CoreData con los datos de la view como atributos.
+    
+    @IBAction func longPressOnMap(_ sender: UILongPressGestureRecognizer) {
+        let screenPoint = sender.location(in: placeLocationMapView)
+        let coordinate: CLLocationCoordinate2D = placeLocationMapView.convert(screenPoint, toCoordinateFrom: placeLocationMapView)
+        let locationPin = MKPointAnnotation()
+        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 400, longitudinalMeters: 400)
+        
+        locationPin.coordinate = coordinate
+        locationPin.title = placeNameLabel.text
+        
+        let placeMapAnnotations = placeLocationMapView.annotations
+        if !placeMapAnnotations.isEmpty {
+            placeLocationMapView.removeAnnotations(placeMapAnnotations)
+        }
+        
+        placeLocationMapView.setRegion(region, animated: true)
+        placeLocationMapView.addAnnotation(locationPin)
+        placeLocationMapView.selectAnnotation(locationPin, animated: true)
+        
+        if sender.state == .ended {
+            placeLocationMapView.setCenter(coordinate, animated: true)
+        }
+        
+    }
+    
+    @IBAction func centerMapCoordinates(_ sender: UIButton) {
+    
+        if placeLocationMapView.annotations.count > 0 {
+            let annotation: MKAnnotation = placeLocationMapView.annotations[0]
+            placeLocationMapView.setCenter(annotation.coordinate, animated: true)
+            placeLocationMapView.selectAnnotation(annotation, animated: true)
+        }
+        
+    }
     
     @IBAction func chooseImage(_ sender: UITapGestureRecognizer) {
         
@@ -40,6 +79,10 @@ class NewPlaceViewController: UIViewController, UIImagePickerControllerDelegate,
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         let actionSheet = UIAlertController(title: "Fotografía", message: "Escoge una fuente:", preferredStyle: .actionSheet)
+        
+        if UIDevice.current.model.hasPrefix("iPad") {
+            actionSheet.popoverPresentationController?.sourceView = self.placeImageView
+        }
         
         actionSheet.addAction(UIAlertAction(title: "Cámara", style: .default, handler: { (action: UIAlertAction) in
             
@@ -72,6 +115,7 @@ class NewPlaceViewController: UIViewController, UIImagePickerControllerDelegate,
         place.descripcion = placeDescriptionTextFlield.text!
         place.latitud = placeLocationMapView.centerCoordinate.latitude
         place.longitud = placeLocationMapView.centerCoordinate.longitude
+        place.categoria = placeCategoryTextField.text!
         
         coreDataBridge.saveContext()
     }
@@ -124,7 +168,6 @@ class NewPlaceViewController: UIViewController, UIImagePickerControllerDelegate,
                 placeLocationMapView.addAnnotation(locationPin)
                 placeLocationMapView.selectAnnotation(locationPin, animated: true)
                 
-                
             }
             
         }
@@ -148,6 +191,26 @@ class NewPlaceViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         locationManager.checkUserPermissions()
+    }
+
+}
+
+extension NewPlaceViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return coreDataBridge.getCategories().count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return coreDataBridge.getCategories()[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        placeCategoryTextField.text = coreDataBridge.getCategories()[row]
+        placeCategoryTextField.resignFirstResponder()
     }
 
 }

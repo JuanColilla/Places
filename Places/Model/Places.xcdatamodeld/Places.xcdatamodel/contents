@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Place" representedClassName=".Place" syncable="YES" codeGenerationType="class">
-        <attribute name="categoria" optional="YES" attributeType="String"/>
+        <attribute name="categoria" attributeType="String" defaultValueString="Lugar Especial"/>
         <attribute name="descripcion" attributeType="String" defaultValueString="Descripción"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="imagen" optional="YES" attributeType="Binary"/>

@@ -14,6 +14,7 @@ class CoreDataBridge {
     
     let managedObjectViewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var placesSaved: [Place] = [Place]()
+    let categories: [String] = ["Restaurante", "Lugar Especial", "Punto de interés", "Paisaje natural", "Bar", "Ruta", "Recuerdo Especial"]
      
     init() {}
     
@@ -30,6 +31,10 @@ class CoreDataBridge {
         return managedObjectViewContext
     }
     
+    func getCategories() -> [String] {
+        return categories
+    }
+    
      // Borrar todos los Places guardados.
      func deleteAllPlaces(){
          for result in fetchSavedPlaces() {
@@ -39,9 +44,9 @@ class CoreDataBridge {
      }
      
      // Borrar un Place en concreto.
-     func deletePlace(nombre: String){
+     func deletePlace(id: UUID){
          for object in fetchSavedPlaces() {
-             if object.nombre == nombre {
+             if object.id == id {
                  managedObjectViewContext.delete(object)
                  print("Se ha borrado con éxito")
              }

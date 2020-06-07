@@ -16,8 +16,9 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var placeNameLabel: UITextField!
     @IBOutlet weak var placeDescriptionText: UITextView!
     @IBOutlet weak var placeLocationMapView: MKMapView!
-    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var placeCategoryTextField: UITextField!
     
+    let picker = UIPickerView()
     var place: Place!
     let coreDataBridge: CoreDataBridge = CoreDataBridge()
     let locationManager: LocationManager = LocationManager()
@@ -25,9 +26,15 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        picker.dataSource = self
+        picker.delegate = self
+        
         placeImageView.image = coreDataBridge.data2Image(data: (place.imagen!))
         placeNameLabel.text = place.nombre ?? "Sin nombre"
         placeDescriptionText.text = place.descripcion ?? "Sin descripción"
+        placeCategoryTextField.text = place.categoria ?? "Sin Categoría"
+        
+        placeCategoryTextField.inputView = picker
         
         centerPlaceLocationOnMap()
     }
@@ -46,6 +53,34 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
         placeLocationMapView.selectAnnotation(locationPin, animated: true)
     }
     
+    @IBAction func centerMapPosition(_ sender: UIButton) {
+        placeLocationMapView.setCenter(placeLocationMapView.annotations[0].coordinate, animated: true)
+        placeLocationMapView.selectAnnotation(placeLocationMapView.annotations[0], animated: true)
+    }
+    
+    
+    @IBAction func longPressOnMap(_ sender: UILongPressGestureRecognizer) {
+        let screenPoint = sender.location(in: placeLocationMapView)
+        let coordinate: CLLocationCoordinate2D = placeLocationMapView.convert(screenPoint, toCoordinateFrom: placeLocationMapView)
+        let locationPin = MKPointAnnotation()
+        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 400, longitudinalMeters: 400)
+        
+        locationPin.coordinate = coordinate
+        locationPin.title = placeNameLabel.text
+        
+        let placeMapAnnotations = placeLocationMapView.annotations
+        if !placeMapAnnotations.isEmpty {
+            placeLocationMapView.removeAnnotations(placeMapAnnotations)
+        }
+        
+        placeLocationMapView.setRegion(region, animated: true)
+        placeLocationMapView.addAnnotation(locationPin)
+        placeLocationMapView.selectAnnotation(locationPin, animated: true)
+        
+        if sender.state == .ended {
+            placeLocationMapView.setCenter(coordinate, animated: true)
+        }
+    }
     
     @IBAction func chooseImage(_ sender: UITapGestureRecognizer) {
         
@@ -128,6 +163,10 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
         picker.dismiss(animated: true, completion: nil)
     }
     
+    
+    
+    
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Do nothing
     }
@@ -153,4 +192,25 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
             coreDataBridge.saveContext()
         }
     }
+}
+
+
+extension PlaceDetailsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return coreDataBridge.getCategories().count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return coreDataBridge.getCategories()[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        placeCategoryTextField.text = coreDataBridge.getCategories()[row]
+        placeCategoryTextField.resignFirstResponder()
+    }
+
 }

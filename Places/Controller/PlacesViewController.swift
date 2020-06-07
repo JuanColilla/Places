@@ -8,7 +8,9 @@
 
 import UIKit
 
-class PlacesViewController: UICollectionViewController {
+class PlacesViewController: UICollectionViewController, PlaceCellDelegate {
+    
+    @IBOutlet weak var addPlaceBarButton: UIBarButtonItem!
     
     private let reuseIdentifier = "customCell"
     let manager: CoreDataBridge = CoreDataBridge()
@@ -18,20 +20,32 @@ class PlacesViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        reloadPlaces()
         
+        navigationItem.leftBarButtonItem = editButtonItem
+    }
+        
+    func delete(cell: PlaceCell) {
+        if let indexPath = collectionView?.indexPath(for: cell) {
+            manager.deletePlace(id: placesSaved[indexPath.row].id!)
+            
+            UIViewPropertyAnimator.runningPropertyAnimator(
+                withDuration: 0.3,
+                delay: 0,
+                options: UIView.AnimationOptions.curveEaseIn,
+                animations: { cell.alpha = 0 },
+                completion: {
+                    if $0 == .end{
+                        self.collectionView?.deleteItems(at: [indexPath])
+                        self.reloadPlaces()
+                    }})
+            
+        }
+    }
+    
+    func reloadPlaces(){
         placesSaved = manager.fetchSavedPlaces()
-        collectionView.reloadData()
-        print(placesSaved.count)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        collectionView.reloadData()
-    }
-    
-    // MARK: UICollectionViewDataSource
     
     // FINALIZADA
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -45,6 +59,20 @@ class PlacesViewController: UICollectionViewController {
         return placesSaved.count
     }
     
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        addPlaceBarButton.isEnabled = !editing
+        
+        if let indexPaths = collectionView?.indexPathsForVisibleItems {
+            for indexPath in indexPaths {
+                if let cell = collectionView?.cellForItem(at: indexPath) as? PlaceCell {
+                    cell.editing = editing
+                    
+                }
+            }
+        }
+    }
+    
     // LA LLAMADA A LA PROPIA CELDA
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PlaceCell
@@ -56,20 +84,20 @@ class PlacesViewController: UICollectionViewController {
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 10
         
+        cell.delegate = self
+        
+        cell.deleteButton.isHidden = true
+        
         return cell
     }
     
-    //    @IBAction func deleteAll(_ sender: Any) {
-    //        manager.deleteAllPlaces()
-    //        placesSaved.removeAll()
-    //        collectionView.reloadData()
-    //    }
-        
-        
-        @IBAction func goBack (segue : UIStoryboardSegue) {
-            placesSaved = manager.fetchSavedPlaces()
-            collectionView.reloadData()
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if isEditing {
+            return false
+        } else {
+            return true
         }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "placeInfo" {

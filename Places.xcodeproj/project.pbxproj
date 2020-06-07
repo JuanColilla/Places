@@ -85,8 +85,8 @@
 			children = (
 				0D85A65D248178C700CCA1DD /* PlacesViewController.swift */,
 				0D85A67B24817B6B00CCA1DD /* PlaceCell.swift */,
-				0D2502AB24828D550096ED59 /* PlaceDetailsViewController.swift */,
 				0D97EF4424893DAF00D2AC92 /* NewPlaceViewController.swift */,
+				0D2502AB24828D550096ED59 /* PlaceDetailsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -343,7 +343,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.5;
+				MARKETING_VERSION = 0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JuanColilla.Places;
 				PRODUCT_NAME = Places;
 				SWIFT_VERSION = 5.0;
@@ -362,7 +362,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.5;
+				MARKETING_VERSION = 0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JuanColilla.Places;
 				PRODUCT_NAME = Places;
 				SWIFT_VERSION = 5.0;
