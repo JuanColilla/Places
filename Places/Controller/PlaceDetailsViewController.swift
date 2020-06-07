@@ -32,7 +32,7 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
         placeImageView.image = coreDataBridge.data2Image(data: (place.imagen!))
         placeNameLabel.text = place.nombre ?? "Sin nombre"
         placeDescriptionText.text = place.descripcion ?? "Sin descripción"
-        placeCategoryTextField.text = place.categoria ?? "Sin Categoría"
+        placeCategoryTextField.insertText(place.categoria ?? "Sin Categoría")
         
         placeCategoryTextField.inputView = picker
         

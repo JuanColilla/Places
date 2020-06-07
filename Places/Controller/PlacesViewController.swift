@@ -99,6 +99,11 @@ class PlacesViewController: UICollectionViewController, PlaceCellDelegate {
         }
     }
     
+    @IBAction func goBack (segue : UIStoryboardSegue) {
+        placesSaved = manager.fetchSavedPlaces()
+        collectionView.reloadData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "placeInfo" {
             if let cell = sender as? PlaceCell {
