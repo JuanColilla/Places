@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D2502AC24828D550096ED59 /* PlaceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2502AB24828D550096ED59 /* PlaceDetailsViewController.swift */; };
+		0D6075DD2491268C0084650E /* PlacesSeachBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6075DC2491268C0084650E /* PlacesSeachBar.swift */; };
 		0D85A65A248178C700CCA1DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A659248178C700CCA1DD /* AppDelegate.swift */; };
 		0D85A65C248178C700CCA1DD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A65B248178C700CCA1DD /* SceneDelegate.swift */; };
 		0D85A65E248178C700CCA1DD /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A65D248178C700CCA1DD /* PlacesViewController.swift */; };
@@ -20,10 +21,13 @@
 		0D85A67C24817B6B00CCA1DD /* PlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A67B24817B6B00CCA1DD /* PlaceCell.swift */; };
 		0D97EF4524893DAF00D2AC92 /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D97EF4424893DAF00D2AC92 /* NewPlaceViewController.swift */; };
 		0D97EF49248BC38E00D2AC92 /* Places.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 0D97EF48248BC38D00D2AC92 /* Places.xcdatamodel */; };
+		0DDD0FDC248D83AE00DA0C0F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDD0FDB248D83AE00DA0C0F /* SettingsTableViewController.swift */; };
+		0DDD0FDE248D83D000DA0C0F /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDD0FDD248D83D000DA0C0F /* SettingsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0D2502AB24828D550096ED59 /* PlaceDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewController.swift; sourceTree = "<group>"; };
+		0D6075DC2491268C0084650E /* PlacesSeachBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesSeachBar.swift; sourceTree = "<group>"; };
 		0D85A656248178C700CCA1DD /* Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Places.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D85A659248178C700CCA1DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D85A65B248178C700CCA1DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +42,8 @@
 		0D85A67B24817B6B00CCA1DD /* PlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCell.swift; sourceTree = "<group>"; };
 		0D97EF4424893DAF00D2AC92 /* NewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
 		0D97EF48248BC38D00D2AC92 /* Places.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = Places.xcdatamodel; path = Places.xcdatamodeld/Places.xcdatamodel; sourceTree = "<group>"; };
+		0DDD0FDB248D83AE00DA0C0F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		0DDD0FDD248D83D000DA0C0F /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,9 +90,12 @@
 			isa = PBXGroup;
 			children = (
 				0D85A65D248178C700CCA1DD /* PlacesViewController.swift */,
+				0D6075DC2491268C0084650E /* PlacesSeachBar.swift */,
 				0D85A67B24817B6B00CCA1DD /* PlaceCell.swift */,
 				0D97EF4424893DAF00D2AC92 /* NewPlaceViewController.swift */,
 				0D2502AB24828D550096ED59 /* PlaceDetailsViewController.swift */,
+				0DDD0FDB248D83AE00DA0C0F /* SettingsTableViewController.swift */,
+				0DDD0FDD248D83D000DA0C0F /* SettingsTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -185,11 +194,14 @@
 			files = (
 				0D97EF4524893DAF00D2AC92 /* NewPlaceViewController.swift in Sources */,
 				0D85A67C24817B6B00CCA1DD /* PlaceCell.swift in Sources */,
+				0DDD0FDE248D83D000DA0C0F /* SettingsTableViewCell.swift in Sources */,
 				0D85A65E248178C700CCA1DD /* PlacesViewController.swift in Sources */,
+				0DDD0FDC248D83AE00DA0C0F /* SettingsTableViewController.swift in Sources */,
 				0D85A67624817B0B00CCA1DD /* LocationManager.swift in Sources */,
 				0D85A65A248178C700CCA1DD /* AppDelegate.swift in Sources */,
 				0D85A67824817B1D00CCA1DD /* NotificationManager.swift in Sources */,
 				0D2502AC24828D550096ED59 /* PlaceDetailsViewController.swift in Sources */,
+				0D6075DD2491268C0084650E /* PlacesSeachBar.swift in Sources */,
 				0D85A65C248178C700CCA1DD /* SceneDelegate.swift in Sources */,
 				0D97EF49248BC38E00D2AC92 /* Places.xcdatamodel in Sources */,
 				0D85A67324817ADE00CCA1DD /* CoreDataBridge.swift in Sources */,
@@ -343,7 +355,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.6;
+				MARKETING_VERSION = 0.75;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JuanColilla.Places;
 				PRODUCT_NAME = Places;
 				SWIFT_VERSION = 5.0;
@@ -362,7 +374,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.6;
+				MARKETING_VERSION = 0.75;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JuanColilla.Places;
 				PRODUCT_NAME = Places;
 				SWIFT_VERSION = 5.0;

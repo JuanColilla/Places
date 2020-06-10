@@ -9,7 +9,6 @@
 import CoreData
 import UIKit
 
-
 class CoreDataBridge {
     
     let managedObjectViewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -21,9 +20,8 @@ class CoreDataBridge {
     func saveContext(){
         do {
             try managedObjectViewContext.save()
-            print("Guardado con exito.")
         } catch {
-            print("Fallo al guardar..")
+            print("Error al guardar contexto: \(error.localizedDescription)")
         }
     }
     
@@ -48,7 +46,6 @@ class CoreDataBridge {
          for object in fetchSavedPlaces() {
              if object.id == id {
                  managedObjectViewContext.delete(object)
-                 print("Se ha borrado con éxito")
              }
          }
          saveContext()
@@ -65,6 +62,16 @@ class CoreDataBridge {
          let emptyPlace: Place = Place()
          return emptyPlace
      }
+    
+    func fetchPlaceByName(name: String) -> [Place]? {
+        var placesToReturn: [Place] = [Place]()
+        for object in fetchSavedPlaces() {
+            if object.nombre?.lowercased() == name.lowercased() {
+                placesToReturn.append(object)
+            }
+        }
+        return placesToReturn
+    }
     
      // Recuperar la lista de Places guardados.
       func fetchSavedPlaces() -> [Place] {

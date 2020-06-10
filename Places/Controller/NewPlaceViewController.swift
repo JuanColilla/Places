@@ -62,6 +62,35 @@ class NewPlaceViewController: UIViewController, UIImagePickerControllerDelegate,
         
     }
     
+    @IBAction func getDirectionsButton(_ sender: UIButton) {
+        
+        var coordinate: CLLocationCoordinate2D
+        
+        if (placeLocationMapView.annotations.count > 0) {
+            coordinate = placeLocationMapView.annotations[0].coordinate
+            let destination = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
+            destination.name = placeNameLabel.text ?? "Place"
+            
+            
+            let alert = UIAlertController(title: "Abrir en mapas", message: "Si decide continuar se trazará una ruta hacia la ubicación del lugar guardado.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Entendido", style: .default, handler: { (action: UIAlertAction) in
+                MKMapItem.openMaps(with: [destination], launchOptions: nil)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction) in}))
+            self.present(alert, animated: true)
+            
+        } else {
+            let alert = UIAlertController(title: "Abrir en mapas", message: "No existe ubicación a la que poder trazar indicaciones.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Entendido", style: .default, handler: { (action: UIAlertAction) in}))
+            self.present(alert, animated: true)
+        }
+        
+        
+        
+    }
+    
+    
     @IBAction func centerMapCoordinates(_ sender: UIButton) {
     
         if placeLocationMapView.annotations.count > 0 {
@@ -151,10 +180,11 @@ class NewPlaceViewController: UIViewController, UIImagePickerControllerDelegate,
                 placeLocationMapView.setRegion(region, animated: true)
                 placeLocationMapView.addAnnotation(locationPin)
                 placeLocationMapView.selectAnnotation(locationPin, animated: true)
-                
-                print("Coordenadas adquiridas.")
             } else {
-                print("Sin coordenadas")
+               let warning = UIAlertController(title: "Aviso", message: "La fotografía seleccionada no dispone de datos GPS, deberás marcar la ubicación manualmente.", preferredStyle: .alert)
+                
+                warning.addAction(UIAlertAction(title: "Entendido", style: .default, handler: { (action: UIAlertAction) in}))
+                self.present(warning, animated: true)
             }
         } else {
             if let location = locationManager.getUserCurrentLocation(){

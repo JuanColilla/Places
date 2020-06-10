@@ -75,6 +75,7 @@ class PlacesViewController: UICollectionViewController, PlaceCellDelegate {
     
     // LA LLAMADA A LA PROPIA CELDA
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PlaceCell
         let item: Place = placesSaved[indexPath.row]
         
@@ -117,3 +118,29 @@ class PlacesViewController: UICollectionViewController, PlaceCellDelegate {
     }
 }
 
+extension PlacesViewController: UISearchBarDelegate {
+
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let searchView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader , withReuseIdentifier: "SearchBar", for: indexPath)
+        
+        return searchView
+        }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.placesSaved.removeAll()
+        
+        guard let placesWithSearchedName: [Place] = manager.fetchPlaceByName(name: searchBar.text!) else {
+            return
+        }
+        
+        if (searchBar.text!.isEmpty) {
+            self.placesSaved = manager.fetchSavedPlaces()
+        } else {
+            self.placesSaved = placesWithSearchedName
+        }
+        
+        self.collectionView.reloadData()
+    }
+    
+}

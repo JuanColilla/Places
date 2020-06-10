@@ -6,12 +6,12 @@
 //  Copyright © 2020 Juan Colilla. All rights reserved.
 //
 
-import Foundation
 import CoreLocation
 
 class LocationManager {
     
     let locationManager: CLLocationManager = CLLocationManager()
+    //var regions: [CLRegion] = [CLRegion]()
     
     init() {
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -44,4 +44,10 @@ class LocationManager {
         locationManager.requestLocation()
         return locationManager.location
     }
+    
+//    func setRegion() {
+//        locationManager.startMonitoring(for: region)
+//        region.notifyOnEntry = true
+//    }
+    
 }

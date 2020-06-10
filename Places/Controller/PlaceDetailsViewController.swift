@@ -39,6 +39,45 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
         centerPlaceLocationOnMap()
     }
     
+    @IBAction func getDirectionsButton(_ sender: UIButton) {
+        
+        var coordinate: CLLocationCoordinate2D
+        
+        if (placeLocationMapView.annotations.count > 0) {
+            coordinate = placeLocationMapView.annotations[0].coordinate
+            let destination = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
+            destination.name = placeNameLabel.text ?? "Place"
+            
+            
+            let alert = UIAlertController(title: "Abrir en mapas", message: "Si decide continuar se trazará una ruta hacia la ubicación del lugar guardado.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Entendido", style: .default, handler: { (action: UIAlertAction) in
+                MKMapItem.openMaps(with: [destination], launchOptions: nil)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction) in}))
+            self.present(alert, animated: true)
+            
+        } else {
+            let alert = UIAlertController(title: "Abrir en mapas", message: "No existe ubicación a la que poder trazar indicaciones.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Entendido", style: .default, handler: { (action: UIAlertAction) in}))
+            self.present(alert, animated: true)
+        }
+        
+        
+        
+    }
+    
+    
+    @IBAction func centerMapCoordinates(_ sender: UIButton) {
+    
+        if placeLocationMapView.annotations.count > 0 {
+            let annotation: MKAnnotation = placeLocationMapView.annotations[0]
+            placeLocationMapView.setCenter(annotation.coordinate, animated: true)
+            placeLocationMapView.selectAnnotation(annotation, animated: true)
+        }
+        
+    }
+    
     func centerPlaceLocationOnMap() {
         let locationPin = MKPointAnnotation()
         let coordenadas = CLLocationCoordinate2DMake(place.latitud, place.longitud)
@@ -96,7 +135,10 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
                 imagePickerController.sourceType = .camera
                 self.present(imagePickerController, animated: true, completion: .none)
             } else {
-                print("Cámara no disponible.")
+                let warning = UIAlertController(title: "Aviso", message: "La fotografía seleccionada no dispone de datos GPS, deberás marcar la ubicación manualmente.", preferredStyle: .alert)
+                
+                warning.addAction(UIAlertAction(title: "Entendido", style: .default, handler: { (action: UIAlertAction) in}))
+                self.present(warning, animated: true)
             }
             
         }))
@@ -188,6 +230,7 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
             placeToUpdate.descripcion = placeDescriptionText.text ?? "Sin descripción."
             placeToUpdate.latitud = placeLocationMapView.annotations[0].coordinate.latitude
             placeToUpdate.longitud = placeLocationMapView.annotations[0].coordinate.longitude
+            placeToUpdate.categoria = placeCategoryTextField.text ?? "Sin Categoría"
             
             coreDataBridge.saveContext()
         }
