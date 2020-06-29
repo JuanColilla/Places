@@ -114,6 +114,10 @@ class PlacesViewController: UICollectionViewController, PlaceCellDelegate {
                     }
                 }
             }
+        } else {
+            if let destinationViewController = segue.destination as? PlaceDetailsViewController {
+                destinationViewController.mode = "New"
+            }
         }
     }
 }

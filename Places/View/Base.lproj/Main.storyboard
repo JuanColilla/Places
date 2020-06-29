@@ -96,7 +96,7 @@
                                     <outlet property="cellImage" destination="uoU-hp-A9h" id="pyU-XF-kmw"/>
                                     <outlet property="cellLabel" destination="pyJ-3r-fAf" id="3Uu-04-jeI"/>
                                     <outlet property="deleteButton" destination="Ghb-Pg-eAQ" id="pol-IU-LEe"/>
-                                    <segue destination="4vH-az-UXP" kind="show" identifier="placeInfo" id="7uA-3T-55U"/>
+                                    <segue destination="31j-vd-LkD" kind="show" identifier="placeInfo" id="SKh-qi-bZ7"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -131,7 +131,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="newPlaceButton" image="plus" catalog="system" id="FJy-aR-tRt">
                             <connections>
-                                <segue destination="31j-vd-LkD" kind="presentation" identifier="newPlace" id="LEl-wx-NsN"/>
+                                <segue destination="31j-vd-LkD" kind="presentation" identifier="newPlace" modalPresentationStyle="automatic" id="LEl-wx-NsN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -217,7 +217,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" translatesAutoresizingMaskIntoConstraints="NO" id="8Fe-ND-ude">
-                                <rect key="frame" x="0.0" y="88" width="414" height="225"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="225"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="225" id="xgi-1k-k87"/>
@@ -227,7 +227,7 @@
                                 </connections>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" text="Descripción" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PJt-rz-zny">
-                                <rect key="frame" x="0.0" y="357" width="414" height="212"/>
+                                <rect key="frame" x="0.0" y="313" width="414" height="212"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="212" id="R5p-Fv-cRN"/>
@@ -237,7 +237,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cma-HG-bJw">
-                                <rect key="frame" x="0.0" y="577" width="414" height="242"/>
+                                <rect key="frame" x="0.0" y="533" width="414" height="286"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="242" id="vr6-rZ-QIV"/>
@@ -250,7 +250,7 @@
                                 </connections>
                             </mapView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Nombre" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N7Q-jg-ncf">
-                                <rect key="frame" x="20" y="321" width="374" height="34"/>
+                                <rect key="frame" x="20" y="277" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="DqX-Ch-GcA"/>
                                 </constraints>
@@ -358,18 +358,18 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3040.579710144928" y="371.65178571428572"/>
+            <point key="canvasLocation" x="3749" y="760"/>
         </scene>
         <!--New Place Modal-->
         <scene sceneID="IwO-f3-vAR">
             <objects>
-                <viewController title="New Place Modal" id="31j-vd-LkD" customClass="NewPlaceViewController" customModule="Places" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="New Place Modal" hidesBottomBarWhenPushed="YES" id="31j-vd-LkD" customClass="PlaceDetailsViewController" customModule="Places" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QmD-mC-YT3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="M4v-oC-Mns">
-                                <rect key="frame" x="0.0" y="538" width="414" height="227"/>
+                                <rect key="frame" x="0.0" y="592" width="414" height="227"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="227" id="nHc-sq-EqP"/>
@@ -382,7 +382,7 @@
                                 </connections>
                             </mapView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" translatesAutoresizingMaskIntoConstraints="NO" id="mPe-dQ-tDy">
-                                <rect key="frame" x="0.0" y="56" width="414" height="223"/>
+                                <rect key="frame" x="0.0" y="110" width="414" height="223"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="223" id="0pK-lr-r79"/>
@@ -392,35 +392,15 @@
                                 </connections>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Nombre" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eLO-Jj-vy3">
-                                <rect key="frame" x="20" y="283" width="374" height="34"/>
+                                <rect key="frame" x="20" y="337" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="19Q-Ez-NW8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fiT-c9-duY">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="uap-hR-rvx"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Nuevo Place" id="z86-Rf-03Y">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancelar" id="U5Z-Y0-53K">
-                                            <connections>
-                                                <segue destination="nGx-b4-2Zi" kind="unwind" identifier="Cancel" unwindAction="goBackWithSegue:" id="XX4-S0-hju"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Crear" id="E3A-ne-Nls">
-                                            <connections>
-                                                <segue destination="nGx-b4-2Zi" kind="unwind" identifier="Save" unwindAction="goBackWithSegue:" id="JON-Bc-4Jw"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" text="Descripción." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GA2-cl-hj1">
-                                <rect key="frame" x="0.0" y="325" width="414" height="205"/>
+                                <rect key="frame" x="0.0" y="379" width="414" height="205"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="205" id="gTk-1L-N6x"/>
@@ -430,7 +410,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgo-u3-jPr">
-                                <rect key="frame" x="369" y="720" width="45" height="45"/>
+                                <rect key="frame" x="369" y="774" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="kWq-Vn-r8u"/>
                                 </constraints>
@@ -443,8 +423,8 @@
                                     <action selector="centerMapCoordinates:" destination="31j-vd-LkD" eventType="touchUpInside" id="SLk-SV-jRv"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Category" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d5I-nf-eLC">
-                                <rect key="frame" x="20" y="774" width="374" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d5I-nf-eLC">
+                                <rect key="frame" x="20" y="828" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="4Le-Al-7M3"/>
                                 </constraints>
@@ -452,7 +432,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q84-Ib-qZe">
-                                <rect key="frame" x="369" y="675" width="45" height="45"/>
+                                <rect key="frame" x="369" y="729" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="FZV-o3-opF"/>
                                     <constraint firstAttribute="height" constant="45" id="KQW-Lo-ev7"/>
@@ -467,15 +447,31 @@
                                     <action selector="getDirectionsButton:" destination="31j-vd-LkD" eventType="touchUpInside" id="7xh-FX-DQ2"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R4i-wH-mJw">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Nuevo Place" id="pd8-YZ-B1c">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancelar" id="zZr-bD-7CC">
+                                            <connections>
+                                                <segue destination="nGx-b4-2Zi" kind="unwind" identifier="Cancel" unwindAction="goBackWithSegue:" id="h11-f9-AhI"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Añadir" id="5NX-N4-PbD">
+                                            <connections>
+                                                <segue destination="nGx-b4-2Zi" kind="unwind" identifier="Save" unwindAction="goBackWithSegue:" id="sWZ-cd-Dm5"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="M4v-oC-Mns" firstAttribute="bottom" secondItem="jgo-u3-jPr" secondAttribute="bottom" id="5Zp-9d-cco"/>
                             <constraint firstItem="eLO-Jj-vy3" firstAttribute="trailing" secondItem="QmD-mC-YT3" secondAttribute="trailingMargin" id="6FT-S2-CIG"/>
-                            <constraint firstItem="fiT-c9-duY" firstAttribute="top" secondItem="KPX-e4-aqf" secondAttribute="top" id="8iT-ah-Fu0"/>
                             <constraint firstItem="M4v-oC-Mns" firstAttribute="trailing" secondItem="KPX-e4-aqf" secondAttribute="trailing" id="9Gl-mN-ENO"/>
                             <constraint firstItem="M4v-oC-Mns" firstAttribute="top" secondItem="GA2-cl-hj1" secondAttribute="bottom" constant="8" id="CsO-yX-yLu"/>
-                            <constraint firstItem="fiT-c9-duY" firstAttribute="trailing" secondItem="mPe-dQ-tDy" secondAttribute="trailing" id="Czw-zM-pd8"/>
                             <constraint firstItem="jgo-u3-jPr" firstAttribute="leading" secondItem="KPX-e4-aqf" secondAttribute="leading" constant="369" id="EpW-A2-9gr"/>
                             <constraint firstItem="d5I-nf-eLC" firstAttribute="trailing" secondItem="eLO-Jj-vy3" secondAttribute="trailing" id="GUJ-G4-9nC"/>
                             <constraint firstItem="d5I-nf-eLC" firstAttribute="bottom" secondItem="KPX-e4-aqf" secondAttribute="bottom" id="JZ1-gB-3as"/>
@@ -485,30 +481,30 @@
                             <constraint firstItem="mPe-dQ-tDy" firstAttribute="trailing" secondItem="GA2-cl-hj1" secondAttribute="trailing" id="N5D-7v-hru"/>
                             <constraint firstItem="eLO-Jj-vy3" firstAttribute="top" secondItem="mPe-dQ-tDy" secondAttribute="bottom" constant="4" id="Ofu-jx-dXD"/>
                             <constraint firstItem="d5I-nf-eLC" firstAttribute="leading" secondItem="eLO-Jj-vy3" secondAttribute="leading" id="QZK-du-355"/>
-                            <constraint firstItem="fiT-c9-duY" firstAttribute="leading" secondItem="mPe-dQ-tDy" secondAttribute="leading" id="TY9-H4-Yj3"/>
                             <constraint firstItem="GA2-cl-hj1" firstAttribute="trailing" secondItem="jgo-u3-jPr" secondAttribute="trailing" id="VLW-4h-KBg"/>
                             <constraint firstItem="Q84-Ib-qZe" firstAttribute="leading" secondItem="M4v-oC-Mns" secondAttribute="leading" constant="369" id="Ysg-0b-EeD"/>
-                            <constraint firstItem="mPe-dQ-tDy" firstAttribute="top" secondItem="fiT-c9-duY" secondAttribute="bottom" constant="12" id="Zbv-ZJ-1fy"/>
                             <constraint firstItem="M4v-oC-Mns" firstAttribute="leading" secondItem="KPX-e4-aqf" secondAttribute="leading" id="acU-C1-r3a"/>
                             <constraint firstItem="mPe-dQ-tDy" firstAttribute="leading" secondItem="GA2-cl-hj1" secondAttribute="leading" id="cpZ-Of-XiT"/>
                             <constraint firstItem="M4v-oC-Mns" firstAttribute="trailing" secondItem="jgo-u3-jPr" secondAttribute="trailing" id="jYt-5K-pW2"/>
                             <constraint firstItem="eLO-Jj-vy3" firstAttribute="centerX" secondItem="GA2-cl-hj1" secondAttribute="centerX" id="laQ-2c-ybd"/>
-                            <constraint firstItem="fiT-c9-duY" firstAttribute="leading" secondItem="KPX-e4-aqf" secondAttribute="leading" id="m9V-3l-2u8"/>
                             <constraint firstItem="d5I-nf-eLC" firstAttribute="top" secondItem="M4v-oC-Mns" secondAttribute="bottom" constant="9" id="sKo-mC-Rvt"/>
                             <constraint firstItem="GA2-cl-hj1" firstAttribute="top" secondItem="eLO-Jj-vy3" secondAttribute="bottom" constant="8" id="ubZ-sA-JMm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KPX-e4-aqf"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Nuevo sitio" id="Icg-4m-m5x">
-                        <barButtonItem key="leftBarButtonItem" title="Cancelar" id="9Tz-vP-vml"/>
-                        <barButtonItem key="rightBarButtonItem" title="Crear" id="bK8-Ef-icT"/>
+                    <navigationItem key="navigationItem" title="Place" id="Icg-4m-m5x">
+                        <barButtonItem key="rightBarButtonItem" title="Guardar" id="bK8-Ef-icT">
+                            <connections>
+                                <segue destination="nGx-b4-2Zi" kind="unwind" identifier="Update" unwindAction="goBackWithSegue:" id="YnR-yA-6JP"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="placeCategoryTextField" destination="d5I-nf-eLC" id="aN3-AL-jKa"/>
-                        <outlet property="placeDescriptionTextFlield" destination="GA2-cl-hj1" id="AG2-Jt-8NG"/>
-                        <outlet property="placeImageView" destination="mPe-dQ-tDy" id="zhU-Rt-Hga"/>
-                        <outlet property="placeLocationMapView" destination="M4v-oC-Mns" id="zMa-F7-UpI"/>
-                        <outlet property="placeNameLabel" destination="eLO-Jj-vy3" id="Y0x-b8-go6"/>
+                        <outlet property="placeCategoryTextField" destination="d5I-nf-eLC" id="4cA-dU-qeY"/>
+                        <outlet property="placeDescriptionText" destination="GA2-cl-hj1" id="9Tj-WU-nmW"/>
+                        <outlet property="placeImageView" destination="mPe-dQ-tDy" id="r5a-Cj-ixR"/>
+                        <outlet property="placeLocationMapView" destination="M4v-oC-Mns" id="fFj-ll-P4h"/>
+                        <outlet property="placeNameLabel" destination="eLO-Jj-vy3" id="9MV-Zp-cK9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="my2-gk-xYl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -524,7 +520,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3040.579710144928" y="-275.22321428571428"/>
+            <point key="canvasLocation" x="3657" y="-108"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ZPJ-57-hvb">
@@ -546,6 +542,9 @@
             <point key="canvasLocation" x="-303" y="472"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="SKh-qi-bZ7"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Default" width="415" height="225"/>
         <image name="arrow.up.arrow.down.circle.fill" catalog="system" width="128" height="121"/>

@@ -13,7 +13,7 @@ class CoreDataBridge {
     
     let managedObjectViewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var placesSaved: [Place] = [Place]()
-    let categories: [String] = ["Restaurante", "Lugar Especial", "Punto de interés", "Paisaje natural", "Bar", "Ruta", "Recuerdo Especial"]
+    let categories: [String] = ["Edificio emblemático", "Punto de interés", "Paisaje natural", "Restauración", "Ruta", "Recuerdo", "Otro"]
      
     init() {}
     

@@ -19,7 +19,7 @@
 		0D85A67624817B0B00CCA1DD /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A67524817B0B00CCA1DD /* LocationManager.swift */; };
 		0D85A67824817B1D00CCA1DD /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A67724817B1D00CCA1DD /* NotificationManager.swift */; };
 		0D85A67C24817B6B00CCA1DD /* PlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D85A67B24817B6B00CCA1DD /* PlaceCell.swift */; };
-		0D97EF4524893DAF00D2AC92 /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D97EF4424893DAF00D2AC92 /* NewPlaceViewController.swift */; };
+		0D92A905249A93E90000B27F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D92A904249A93E90000B27F /* MapKit.framework */; };
 		0D97EF49248BC38E00D2AC92 /* Places.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 0D97EF48248BC38D00D2AC92 /* Places.xcdatamodel */; };
 		0DDD0FDC248D83AE00DA0C0F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDD0FDB248D83AE00DA0C0F /* SettingsTableViewController.swift */; };
 		0DDD0FDE248D83D000DA0C0F /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDD0FDD248D83D000DA0C0F /* SettingsTableViewCell.swift */; };
@@ -40,7 +40,7 @@
 		0D85A67524817B0B00CCA1DD /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0D85A67724817B1D00CCA1DD /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		0D85A67B24817B6B00CCA1DD /* PlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCell.swift; sourceTree = "<group>"; };
-		0D97EF4424893DAF00D2AC92 /* NewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
+		0D92A904249A93E90000B27F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0D97EF48248BC38D00D2AC92 /* Places.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = Places.xcdatamodel; path = Places.xcdatamodeld/Places.xcdatamodel; sourceTree = "<group>"; };
 		0DDD0FDB248D83AE00DA0C0F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		0DDD0FDD248D83D000DA0C0F /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -51,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D92A905249A93E90000B27F /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +64,7 @@
 				0D85A658248178C700CCA1DD /* Places */,
 				0D85A66A248178CA00CCA1DD /* Info.plist */,
 				0D85A657248178C700CCA1DD /* Products */,
+				0D92A903249A93E90000B27F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,7 +94,6 @@
 				0D85A65D248178C700CCA1DD /* PlacesViewController.swift */,
 				0D6075DC2491268C0084650E /* PlacesSeachBar.swift */,
 				0D85A67B24817B6B00CCA1DD /* PlaceCell.swift */,
-				0D97EF4424893DAF00D2AC92 /* NewPlaceViewController.swift */,
 				0D2502AB24828D550096ED59 /* PlaceDetailsViewController.swift */,
 				0DDD0FDB248D83AE00DA0C0F /* SettingsTableViewController.swift */,
 				0DDD0FDD248D83D000DA0C0F /* SettingsTableViewCell.swift */,
@@ -121,6 +122,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		0D92A903249A93E90000B27F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0D92A904249A93E90000B27F /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,8 +156,11 @@
 		0D85A64E248178C700CCA1DD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Juan Colilla";
 				TargetAttributes = {
 					0D85A655248178C700CCA1DD = {
@@ -192,7 +204,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D97EF4524893DAF00D2AC92 /* NewPlaceViewController.swift in Sources */,
 				0D85A67C24817B6B00CCA1DD /* PlaceCell.swift in Sources */,
 				0DDD0FDE248D83D000DA0C0F /* SettingsTableViewCell.swift in Sources */,
 				0D85A65E248178C700CCA1DD /* PlacesViewController.swift in Sources */,
@@ -256,6 +267,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -316,6 +328,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

@@ -22,8 +22,10 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Se requiere para acceso a la cámara para realizar la fotografía deseada.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>El acceso constante a tu ubicación nos permite avisarte si te acercas a la ubicación de algún Place guardado anteriormente.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Se requiere acceso a tu ubicación para saber dónde ubicar el sitio que deseas guardar.</string>
+	<string>Cuando crees un nuevo Place, si utilizas la cámara dentro de la app usaremos tu ubicación para marcar el lugar donde hiciste la fotografía.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Se requiere acceso a la fototeca para poder obtener la fotografía deseada y la ubicación donde se tomó.</string>
 	<key>UIApplicationSceneManifest</key>
@@ -45,6 +47,11 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>processing</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

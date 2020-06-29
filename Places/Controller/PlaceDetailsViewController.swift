@@ -22,21 +22,23 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
     var place: Place!
     let coreDataBridge: CoreDataBridge = CoreDataBridge()
     let locationManager: LocationManager = LocationManager()
+    var mode: String = "Details"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if mode == "New" {
+            locationManager.checkUserPermissions()
+            PHPhotoLibrary.requestAuthorization({ status in})
+        } else {
+            placeImageView.image = coreDataBridge.data2Image(data: (place.imagen!))
+            placeNameLabel.text = place.nombre ?? "Sin nombre"
+            placeDescriptionText.text = place.descripcion ?? "Sin descripción"
+            placeCategoryTextField.insertText(place.categoria ?? "Sin Categoría")
+            centerPlaceLocationOnMap()
+        }
         picker.dataSource = self
         picker.delegate = self
-        
-        placeImageView.image = coreDataBridge.data2Image(data: (place.imagen!))
-        placeNameLabel.text = place.nombre ?? "Sin nombre"
-        placeDescriptionText.text = place.descripcion ?? "Sin descripción"
-        placeCategoryTextField.insertText(place.categoria ?? "Sin Categoría")
-        
         placeCategoryTextField.inputView = picker
-        
-        centerPlaceLocationOnMap()
     }
     
     @IBAction func getDirectionsButton(_ sender: UIButton) {
@@ -152,6 +154,18 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
         
     }
     
+    func createPlace() {
+        let place = Place.init(context: coreDataBridge.getContext())
+        place.id = UUID()
+        place.imagen = coreDataBridge.image2Data(image: placeImageView.image!)
+        place.nombre = placeNameLabel.text!
+        place.descripcion = placeDescriptionText.text!
+        place.latitud = placeLocationMapView.centerCoordinate.latitude
+        place.longitud = placeLocationMapView.centerCoordinate.longitude
+        place.categoria = placeCategoryTextField.text!
+        
+        coreDataBridge.saveContext()
+    }
     
     
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -222,7 +236,9 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "updatePlace" {
+        if segue.identifier == "Save" {
+            createPlace()
+        } else if segue.identifier == "Update" {
             let placeToUpdate: Place = coreDataBridge.fetchPlaceByID(id: place.id!)
             
             placeToUpdate.imagen = coreDataBridge.image2Data(image: placeImageView.image!)
