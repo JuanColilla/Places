@@ -7,27 +7,37 @@
 //
 
 import UIKit
+import CoreLocation
 
 class PlacesViewController: UICollectionViewController, PlaceCellDelegate {
     
     @IBOutlet weak var addPlaceBarButton: UIBarButtonItem!
-    
+    let locationManager: LocationManager = LocationManager()
     private let reuseIdentifier = "customCell"
     let manager: CoreDataBridge = CoreDataBridge()
-    var placesSaved: [Place] = [Place]() // Problema con el init de la clase Place, no corresponde con el adecuado de NSManagerObject, revisar curso de CoreData.
+    let notificationManager: NotificationManager = NotificationManager()
+    var placesSaved: [Place] = [Place]()
     
-    // DAR VALOR A TRAVÉS DE LA CONSULTA AL COREDATA
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        reloadPlaces()
+        collectionView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadPlaces()
-        
         navigationItem.leftBarButtonItem = editButtonItem
+        
     }
         
     func delete(cell: PlaceCell) {
         if let indexPath = collectionView?.indexPath(for: cell) {
             manager.deletePlace(id: placesSaved[indexPath.row].id!)
+            let place = placesSaved[indexPath.row]
+            
+            locationManager.deleteRegion(latitude: place.latitud, longitude: place.longitud , name: place.nombre)
+            notificationManager.deleteNotificationRequest(identifiers: [place.nombre])
             
             UIViewPropertyAnimator.runningPropertyAnimator(
                 withDuration: 0.3,
@@ -39,7 +49,6 @@ class PlacesViewController: UICollectionViewController, PlaceCellDelegate {
                         self.collectionView?.deleteItems(at: [indexPath])
                         self.reloadPlaces()
                     }})
-            
         }
     }
     
@@ -73,7 +82,6 @@ class PlacesViewController: UICollectionViewController, PlaceCellDelegate {
         }
     }
     
-    // LA LLAMADA A LA PROPIA CELDA
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PlaceCell

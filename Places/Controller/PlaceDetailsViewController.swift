@@ -9,8 +9,9 @@
 import UIKit
 import Photos
 import MapKit
+import CoreLocation
 
-class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PlaceDetailsViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var placeImageView: UIImageView!
     @IBOutlet weak var placeNameLabel: UITextField!
@@ -22,10 +23,15 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
     var place: Place!
     let coreDataBridge: CoreDataBridge = CoreDataBridge()
     let locationManager: LocationManager = LocationManager()
+    let notificationManager: NotificationManager = NotificationManager()
     var mode: String = "Details"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        placeNameLabel.delegate = self
+        placeDescriptionText.delegate = self
+        
         if mode == "New" {
             locationManager.checkUserPermissions()
             PHPhotoLibrary.requestAuthorization({ status in})
@@ -38,6 +44,8 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
         }
         picker.dataSource = self
         picker.delegate = self
+        locationManager.setDelegate(delegate: self)
+        locationManager.updateLastLocation()
         placeCategoryTextField.inputView = picker
     }
     
@@ -64,27 +72,18 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
             alert.addAction(UIAlertAction(title: "Entendido", style: .default, handler: { (action: UIAlertAction) in}))
             self.present(alert, animated: true)
         }
-        
-        
-        
     }
     
-    
-    @IBAction func centerMapCoordinates(_ sender: UIButton) {
-    
-        if placeLocationMapView.annotations.count > 0 {
-            let annotation: MKAnnotation = placeLocationMapView.annotations[0]
-            placeLocationMapView.setCenter(annotation.coordinate, animated: true)
-            placeLocationMapView.selectAnnotation(annotation, animated: true)
-        }
-        
-    }
     
     func centerPlaceLocationOnMap() {
         let locationPin = MKPointAnnotation()
         let coordenadas = CLLocationCoordinate2DMake(place.latitud, place.longitud)
         locationPin.coordinate = coordenadas
-        locationPin.title = place.nombre
+        if placeNameLabel.text != "Nombre del lugar" {
+            locationPin.title = placeNameLabel.text
+        } else {
+            locationPin.title = "Place"
+        }
         
         let region = MKCoordinateRegion(center: coordenadas, latitudinalMeters: 400, longitudinalMeters: 400)
         
@@ -95,8 +94,27 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     @IBAction func centerMapPosition(_ sender: UIButton) {
-        placeLocationMapView.setCenter(placeLocationMapView.annotations[0].coordinate, animated: true)
-        placeLocationMapView.selectAnnotation(placeLocationMapView.annotations[0], animated: true)
+        if placeLocationMapView.annotations.count > 0 {
+            placeLocationMapView.setCenter (placeLocationMapView.annotations[0].coordinate , animated: true)
+            placeLocationMapView.selectAnnotation(placeLocationMapView.annotations[0], animated: true)
+        } else {
+            // HAY UN PROBLEMA A LA HORA DE PEDIR LA UBICACIÓN, NECESITAMOS ACCEDER A ELLA CON MÁS RAPIDEZ.
+            let locationPin = MKPointAnnotation()
+            let location = locationManager.getLastLocation()
+            let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 400, longitudinalMeters: 400)
+            
+            locationPin.coordinate = location.coordinate
+            if placeNameLabel.text != "Nombre del lugar" {
+                locationPin.title = placeNameLabel.text
+            } else {
+                locationPin.title = "Place"
+            }
+            
+            placeLocationMapView.setCenter(location.coordinate, animated: true)
+            placeLocationMapView.setRegion(region, animated: true)
+            placeLocationMapView.addAnnotation(locationPin)
+            placeLocationMapView.selectAnnotation(locationPin, animated : true)
+        }
     }
     
     
@@ -107,7 +125,11 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 400, longitudinalMeters: 400)
         
         locationPin.coordinate = coordinate
-        locationPin.title = placeNameLabel.text
+        if placeNameLabel.text != "Nombre del lugar" {
+            locationPin.title = placeNameLabel.text
+        } else {
+            locationPin.title = "Place"
+        }
         
         let placeMapAnnotations = placeLocationMapView.annotations
         if !placeMapAnnotations.isEmpty {
@@ -125,8 +147,6 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
     
     @IBAction func chooseImage(_ sender: UITapGestureRecognizer) {
         
-        // Permitir la selección manual de una ubicación así como la apertura de la ubicación actual en Apple Maps.
-        
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         let actionSheet = UIAlertController(title: "Fotografía", message: "Escoge una fuente:", preferredStyle: .actionSheet)
@@ -137,7 +157,7 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
                 imagePickerController.sourceType = .camera
                 self.present(imagePickerController, animated: true, completion: .none)
             } else {
-                let warning = UIAlertController(title: "Aviso", message: "La fotografía seleccionada no dispone de datos GPS, deberás marcar la ubicación manualmente.", preferredStyle: .alert)
+                let warning = UIAlertController(title: "Cámara no accesible", message: "La cámara del dispositivo no está disponible, deberás usar otra fuente.", preferredStyle: .alert)
                 
                 warning.addAction(UIAlertAction(title: "Entendido", style: .default, handler: { (action: UIAlertAction) in}))
                 self.present(warning, animated: true)
@@ -158,81 +178,22 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
         let place = Place.init(context: coreDataBridge.getContext())
         place.id = UUID()
         place.imagen = coreDataBridge.image2Data(image: placeImageView.image!)
-        place.nombre = placeNameLabel.text!
-        place.descripcion = placeDescriptionText.text!
+        place.nombre = placeNameLabel.text ?? "Place"
+        place.descripcion = placeDescriptionText.text ?? "Sin descripción"
         place.latitud = placeLocationMapView.centerCoordinate.latitude
         place.longitud = placeLocationMapView.centerCoordinate.longitude
-        place.categoria = placeCategoryTextField.text!
+        place.categoria = placeCategoryTextField.text ?? "Sin categoría"
+        
+        setNewPlaceNotification(place: place)
         
         coreDataBridge.saveContext()
     }
     
-    
-    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        
-        
-        // Preguntar antes de extraer los metadatos u obtener la ubicación si se desea establecer esta como ubicación del sitio, dado que puede cambiar la imagen pero puede no querer cambiar la localización. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! TO IMPROVE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        
-        let placeMapAnnotations = placeLocationMapView.annotations
-        if !placeMapAnnotations.isEmpty {
-            placeLocationMapView.removeAnnotations(placeMapAnnotations)
-        }
-        
-        if picker.sourceType == .photoLibrary {
-            let metadata = info[UIImagePickerController.InfoKey.phAsset] as! PHAsset
-            
-            if let location = metadata.location {
-                let locationPin = MKPointAnnotation()
-                locationPin.coordinate = location.coordinate
-                locationPin.title = placeNameLabel.text
-                let region = MKCoordinateRegion(center: locationPin.coordinate, latitudinalMeters: 400, longitudinalMeters: 400)
-                
-                placeLocationMapView.setCenter(location.coordinate, animated: true)
-                placeLocationMapView.setRegion(region, animated: true)
-                placeLocationMapView.addAnnotation(locationPin)
-                placeLocationMapView.selectAnnotation(locationPin, animated: true)
-                }
-            
-        } else {
-            
-            if let location = locationManager.getUserCurrentLocation(){
-                let locationPin = MKPointAnnotation()
-                locationPin.coordinate = location.coordinate
-                locationPin.title = placeNameLabel.text
-                let region = MKCoordinateRegion(center: locationPin.coordinate, latitudinalMeters: 400, longitudinalMeters: 400)
-                
-                placeLocationMapView.setCenter(location.coordinate, animated: true)
-                placeLocationMapView.setRegion(region, animated: true)
-                placeLocationMapView.addAnnotation(locationPin)
-                placeLocationMapView.selectAnnotation(locationPin, animated: true)
-                
-            }
-        }
-        
-        placeImageView.image = image
-        
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    
-    
-    
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Do nothing
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error al obtener ubicación \(error.localizedDescription)")
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        locationManager.checkUserPermissions()
+    func setNewPlaceNotification(place: Place) {
+        locationManager.setNewRegion(latitude: place.latitud, longitude: place.longitud, name: place.nombre!)
+        let content = notificationManager.createNotification(place: place)
+        let trigger = notificationManager.setTriggerNotification(region: CLCircularRegion(center: CLLocationCoordinate2D(latitude: place.latitud, longitude: place.longitud), radius: 200, identifier: place.nombre!))
+        notificationManager.addNotificationRequest(identifier: place.nombre!, content: content, trigger: trigger)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -251,6 +212,82 @@ class PlaceDetailsViewController: UIViewController, UIImagePickerControllerDeleg
             coreDataBridge.saveContext()
         }
     }
+}
+
+extension PlaceDetailsViewController: UIImagePickerControllerDelegate {
+    
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        
+        let placeMapAnnotations = placeLocationMapView.annotations
+        if !placeMapAnnotations.isEmpty {
+            placeLocationMapView.removeAnnotations(placeMapAnnotations)
+        }
+        
+        if picker.sourceType == .photoLibrary {
+            let metadata = info[UIImagePickerController.InfoKey.phAsset] as! PHAsset
+            
+            if let location = metadata.location {
+                let locationPin = MKPointAnnotation()
+                locationPin.coordinate = location.coordinate
+                if placeNameLabel.text != "Nombre del lugar" {
+                    locationPin.title = placeNameLabel.text
+                } else {
+                    locationPin.title = "Place"
+                }
+                let region = MKCoordinateRegion(center: locationPin.coordinate, latitudinalMeters: 400, longitudinalMeters: 400)
+                
+                placeLocationMapView.setRegion(region, animated: true)
+                placeLocationMapView.setCenter(location.coordinate, animated: true)
+                placeLocationMapView.addAnnotation(locationPin)
+                placeLocationMapView.selectAnnotation(locationPin, animated: true)
+            } else {
+                
+                let warning = UIAlertController(title: "Sin datos GPS", message: "La fotografía seleccionada no dispone de datos GPS, deberás marcar la ubicación manualmente.", preferredStyle: .alert)
+                
+                warning.addAction(UIAlertAction(title: "Entendido", style: .default, handler: { (action: UIAlertAction) in}))
+                picker.dismiss(animated: true, completion: {self.present(warning, animated: true)})
+            }
+            
+        } else {
+            let location = locationManager.getLastLocation()
+            let locationPin = MKPointAnnotation()
+            locationPin.coordinate = location.coordinate
+            locationPin.title = placeNameLabel.text
+            let region = MKCoordinateRegion(center: locationPin.coordinate, latitudinalMeters: 400, longitudinalMeters: 400)
+            
+            placeLocationMapView.setRegion(region, animated: true)
+            placeLocationMapView.setCenter(location.coordinate, animated: true)
+            placeLocationMapView.addAnnotation(locationPin)
+            placeLocationMapView.selectAnnotation(locationPin, animated: true)
+        }
+        
+        placeImageView.image = image
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+
+extension PlaceDetailsViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationManager.searchForCloseRegions()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error al obtener ubicación \(error.localizedDescription)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        locationManager.checkUserPermissions()
+    }
+    
 }
 
 
@@ -272,4 +309,22 @@ extension PlaceDetailsViewController: UIPickerViewDataSource, UIPickerViewDelega
         placeCategoryTextField.resignFirstResponder()
     }
 
+}
+
+
+extension PlaceDetailsViewController: UITextFieldDelegate, UITextViewDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        textView.resignFirstResponder()
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.text = ""
+    }
+    
 }

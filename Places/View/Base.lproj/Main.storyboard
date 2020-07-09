@@ -124,7 +124,7 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Item" id="N49-lf-FWV"/>
                     <navigationItem key="navigationItem" title="Places" id="7xd-CQ-dra">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="t4k-9T-Q47">
+                        <barButtonItem key="leftBarButtonItem" title="Editar" id="t4k-9T-Q47">
                             <connections>
                                 <action selector="editModeBarButton:" destination="f3b-RW-4lm" id="HKO-by-8sT"/>
                             </connections>
@@ -208,162 +208,10 @@
             </objects>
             <point key="canvasLocation" x="651" y="1044"/>
         </scene>
-        <!--Place Details View-->
-        <scene sceneID="hLy-h1-g5s">
-            <objects>
-                <viewController title="Place Details View" hidesBottomBarWhenPushed="YES" id="4vH-az-UXP" customClass="PlaceDetailsViewController" customModule="Places" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="TiX-3A-ZUQ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" translatesAutoresizingMaskIntoConstraints="NO" id="8Fe-ND-ude">
-                                <rect key="frame" x="0.0" y="44" width="414" height="225"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="225" id="xgi-1k-k87"/>
-                                </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="iIR-tE-QFn" appends="YES" id="ZWS-B6-0kC"/>
-                                </connections>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" text="Descripción" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PJt-rz-zny">
-                                <rect key="frame" x="0.0" y="313" width="414" height="212"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="212" id="R5p-Fv-cRN"/>
-                                </constraints>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                            </textView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cma-HG-bJw">
-                                <rect key="frame" x="0.0" y="533" width="414" height="286"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="242" id="vr6-rZ-QIV"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="wvQ-Kn-cle" appends="YES" id="x6K-aS-I26"/>
-                                </connections>
-                            </mapView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Nombre" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N7Q-jg-ncf">
-                                <rect key="frame" x="20" y="277" width="374" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="DqX-Ch-GcA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qiE-fv-G7j">
-                                <rect key="frame" x="369" y="774" width="45" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="8ym-8H-EeB"/>
-                                </constraints>
-                                <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="mappin.circle.fill" catalog="system">
-                                    <color key="titleColor" red="0.031031884520000001" green="0.031031884520000001" blue="0.031031884520000001" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                </state>
-                                <connections>
-                                    <action selector="centerMapPosition:" destination="4vH-az-UXP" eventType="touchUpInside" id="O3n-sS-4Wc"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8bH-dJ-71R">
-                                <rect key="frame" x="20" y="828" width="374" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="5Jt-X2-Li5"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ATR-lj-KWW">
-                                <rect key="frame" x="369" y="729" width="45" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="xrA-wW-mI2"/>
-                                </constraints>
-                                <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="arrow.up.arrow.down.circle.fill" catalog="system">
-                                    <color key="titleColor" red="0.031031884520000001" green="0.031031884520000001" blue="0.031031884520000001" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                </state>
-                                <connections>
-                                    <action selector="centerMapCoordinates:" destination="31j-vd-LkD" eventType="touchUpInside" id="0L5-o2-asd"/>
-                                    <action selector="getDirectionsButton:" destination="4vH-az-UXP" eventType="touchUpInside" id="ZuZ-p0-3K9"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="PJt-rz-zny" firstAttribute="leading" secondItem="cma-HG-bJw" secondAttribute="leading" id="5vY-pR-z5s"/>
-                            <constraint firstItem="8Fe-ND-ude" firstAttribute="trailing" secondItem="YPV-in-din" secondAttribute="trailing" id="6Jt-67-h75"/>
-                            <constraint firstItem="PJt-rz-zny" firstAttribute="top" secondItem="N7Q-jg-ncf" secondAttribute="bottom" constant="2" id="94h-Cf-0sw"/>
-                            <constraint firstItem="N7Q-jg-ncf" firstAttribute="trailing" secondItem="TiX-3A-ZUQ" secondAttribute="trailingMargin" id="9Gk-k3-ZpG"/>
-                            <constraint firstItem="8Fe-ND-ude" firstAttribute="trailing" secondItem="PJt-rz-zny" secondAttribute="trailing" id="GIj-u7-44j"/>
-                            <constraint firstItem="8Fe-ND-ude" firstAttribute="leading" secondItem="YPV-in-din" secondAttribute="leading" id="GYW-86-N6G"/>
-                            <constraint firstItem="qiE-fv-G7j" firstAttribute="top" secondItem="ATR-lj-KWW" secondAttribute="bottom" id="HlI-0g-tUb"/>
-                            <constraint firstItem="N7Q-jg-ncf" firstAttribute="leading" secondItem="8bH-dJ-71R" secondAttribute="leading" id="Hua-uY-uQx"/>
-                            <constraint firstItem="cma-HG-bJw" firstAttribute="top" secondItem="PJt-rz-zny" secondAttribute="bottom" constant="8" id="I5X-BS-qmP"/>
-                            <constraint firstItem="8Fe-ND-ude" firstAttribute="leading" secondItem="PJt-rz-zny" secondAttribute="leading" id="KhV-4u-G0P"/>
-                            <constraint firstItem="cma-HG-bJw" firstAttribute="leading" secondItem="YPV-in-din" secondAttribute="leading" id="OEz-BE-d79"/>
-                            <constraint firstItem="ATR-lj-KWW" firstAttribute="leading" secondItem="qiE-fv-G7j" secondAttribute="leading" id="TdL-Yq-69x"/>
-                            <constraint firstItem="PJt-rz-zny" firstAttribute="trailing" secondItem="cma-HG-bJw" secondAttribute="trailing" id="TvK-OR-gFh"/>
-                            <constraint firstItem="8Fe-ND-ude" firstAttribute="leading" secondItem="YPV-in-din" secondAttribute="leading" id="UB7-dU-7FE"/>
-                            <constraint firstItem="8Fe-ND-ude" firstAttribute="top" secondItem="YPV-in-din" secondAttribute="top" id="V5X-t8-TME"/>
-                            <constraint firstItem="8bH-dJ-71R" firstAttribute="top" secondItem="cma-HG-bJw" secondAttribute="bottom" constant="9" id="Y4g-zn-YPX"/>
-                            <constraint firstItem="N7Q-jg-ncf" firstAttribute="centerX" secondItem="PJt-rz-zny" secondAttribute="centerX" id="Yrh-ju-K5Z"/>
-                            <constraint firstItem="qiE-fv-G7j" firstAttribute="leading" secondItem="YPV-in-din" secondAttribute="leading" constant="369" id="cxS-oV-q1Y"/>
-                            <constraint firstItem="cma-HG-bJw" firstAttribute="bottom" secondItem="qiE-fv-G7j" secondAttribute="bottom" id="iof-Uf-VEX"/>
-                            <constraint firstItem="8bH-dJ-71R" firstAttribute="bottom" secondItem="YPV-in-din" secondAttribute="bottom" id="mZy-Vp-dQ9"/>
-                            <constraint firstItem="cma-HG-bJw" firstAttribute="trailing" secondItem="YPV-in-din" secondAttribute="trailing" id="mtL-Ow-39W"/>
-                            <constraint firstItem="ATR-lj-KWW" firstAttribute="trailing" secondItem="qiE-fv-G7j" secondAttribute="trailing" id="uYt-j2-nTj"/>
-                            <constraint firstItem="N7Q-jg-ncf" firstAttribute="trailing" secondItem="8bH-dJ-71R" secondAttribute="trailing" id="uck-K4-7fo"/>
-                            <constraint firstItem="N7Q-jg-ncf" firstAttribute="leading" secondItem="TiX-3A-ZUQ" secondAttribute="leadingMargin" id="utw-rL-D6I"/>
-                            <constraint firstItem="cma-HG-bJw" firstAttribute="trailing" secondItem="qiE-fv-G7j" secondAttribute="trailing" id="xfv-8T-5vV"/>
-                            <constraint firstItem="8Fe-ND-ude" firstAttribute="top" secondItem="YPV-in-din" secondAttribute="top" id="z77-1N-83z"/>
-                            <constraint firstItem="N7Q-jg-ncf" firstAttribute="top" secondItem="8Fe-ND-ude" secondAttribute="bottom" constant="8" id="zsU-Mq-qCo"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="YPV-in-din"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="5mM-Cv-UYU"/>
-                    <navigationItem key="navigationItem" title="Place" id="LPl-yw-l2B">
-                        <barButtonItem key="backBarButtonItem" title="Atrás" id="WPg-ws-dyz"/>
-                        <barButtonItem key="rightBarButtonItem" title="Guardar" id="O3p-So-tou">
-                            <connections>
-                                <segue destination="6Dv-d7-hwq" kind="unwind" identifier="updatePlace" unwindAction="goBackWithSegue:" id="A19-QR-GuG"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="placeCategoryTextField" destination="8bH-dJ-71R" id="K1p-Ub-GOe"/>
-                        <outlet property="placeDescriptionText" destination="PJt-rz-zny" id="ql2-BE-SmH"/>
-                        <outlet property="placeImageView" destination="8Fe-ND-ude" id="06J-Gw-Nte"/>
-                        <outlet property="placeLocationMapView" destination="cma-HG-bJw" id="Wjr-Qa-sdZ"/>
-                        <outlet property="placeNameLabel" destination="N7Q-jg-ncf" id="A9C-yd-fxY"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vop-aW-yB0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="6Dv-d7-hwq" userLabel="Exit" sceneMemberID="exit"/>
-                <tapGestureRecognizer id="iIR-tE-QFn" userLabel="MapCentreTapGesture">
-                    <connections>
-                        <action selector="chooseImage:" destination="4vH-az-UXP" id="5tq-K3-s9e"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="wvQ-Kn-cle" userLabel="NewLocationLongPressGesture">
-                    <connections>
-                        <action selector="longPressOnMap:" destination="4vH-az-UXP" id="mgQ-P0-OwD"/>
-                    </connections>
-                </pongPressGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="3749" y="760"/>
-        </scene>
-        <!--New Place Modal-->
+        <!--Place Details-->
         <scene sceneID="IwO-f3-vAR">
             <objects>
-                <viewController title="New Place Modal" hidesBottomBarWhenPushed="YES" id="31j-vd-LkD" customClass="PlaceDetailsViewController" customModule="Places" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="New Place Modal" hidesBottomBarWhenPushed="YES" id="31j-vd-LkD" userLabel="Place Details" customClass="PlaceDetailsViewController" customModule="Places" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QmD-mC-YT3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -391,22 +239,22 @@
                                     <outletCollection property="gestureRecognizers" destination="JcM-fD-Q2u" appends="YES" id="eQ0-0j-J9q"/>
                                 </connections>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Nombre" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eLO-Jj-vy3">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Nombre del lugar" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eLO-Jj-vy3">
                                 <rect key="frame" x="20" y="337" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="19Q-Ez-NW8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" textContentType="name"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" text="Descripción." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GA2-cl-hj1">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" keyboardDismissMode="interactive" text="Describelo un poco." textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GA2-cl-hj1">
                                 <rect key="frame" x="0.0" y="379" width="414" height="205"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="205" id="gTk-1L-N6x"/>
                                 </constraints>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgo-u3-jPr">
@@ -420,10 +268,10 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
                                 <connections>
-                                    <action selector="centerMapCoordinates:" destination="31j-vd-LkD" eventType="touchUpInside" id="SLk-SV-jRv"/>
+                                    <action selector="centerMapPosition:" destination="31j-vd-LkD" eventType="touchUpInside" id="ihe-ak-Uec"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d5I-nf-eLC">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Categoría" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d5I-nf-eLC">
                                 <rect key="frame" x="20" y="828" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="4Le-Al-7M3"/>
@@ -443,7 +291,6 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
                                 <connections>
-                                    <action selector="centerMapCoordinates:" destination="31j-vd-LkD" eventType="touchUpInside" id="c7N-RD-TpQ"/>
                                     <action selector="getDirectionsButton:" destination="31j-vd-LkD" eventType="touchUpInside" id="7xh-FX-DQ2"/>
                                 </connections>
                             </button>
@@ -520,7 +367,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3657" y="-108"/>
+            <point key="canvasLocation" x="3656.521739130435" y="-108.48214285714285"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ZPJ-57-hvb">

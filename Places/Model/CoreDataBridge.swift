@@ -73,6 +73,17 @@ class CoreDataBridge {
         return placesToReturn
     }
     
+    // TESTING FUNCTION
+    func fetchPlaceByLocation(latitud: Double, longitud: Double) -> [Place] {
+        var placesToReturn: [Place] = [Place]()
+        for object in fetchSavedPlaces() {
+            if object.latitud == latitud && object.longitud == longitud {
+                placesToReturn.append(object)
+            }
+        }
+        return placesToReturn
+    }
+    
      // Recuperar la lista de Places guardados.
       func fetchSavedPlaces() -> [Place] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Place")

@@ -92,10 +92,10 @@
 			isa = PBXGroup;
 			children = (
 				0D85A65D248178C700CCA1DD /* PlacesViewController.swift */,
-				0D6075DC2491268C0084650E /* PlacesSeachBar.swift */,
-				0D85A67B24817B6B00CCA1DD /* PlaceCell.swift */,
 				0D2502AB24828D550096ED59 /* PlaceDetailsViewController.swift */,
 				0DDD0FDB248D83AE00DA0C0F /* SettingsTableViewController.swift */,
+				0D6075DC2491268C0084650E /* PlacesSeachBar.swift */,
+				0D85A67B24817B6B00CCA1DD /* PlaceCell.swift */,
 				0DDD0FDD248D83D000DA0C0F /* SettingsTableViewCell.swift */,
 			);
 			path = Controller;
@@ -292,7 +292,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -347,7 +347,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -368,7 +368,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.75;
+				MARKETING_VERSION = 0.90;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JuanColilla.Places;
 				PRODUCT_NAME = Places;
 				SWIFT_VERSION = 5.0;
@@ -387,7 +387,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.75;
+				MARKETING_VERSION = 0.90;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JuanColilla.Places;
 				PRODUCT_NAME = Places;
 				SWIFT_VERSION = 5.0;

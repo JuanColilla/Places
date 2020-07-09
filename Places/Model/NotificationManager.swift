@@ -8,15 +8,15 @@
 
 import Foundation
 import UserNotifications
+import CoreLocation
 
 class NotificationManager {
     
     let center = UNUserNotificationCenter.current()
-    let locationManager = LocationManager()
     var permission: Bool = false
     
     init() {
-        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+        center.requestAuthorization(options: [.alert, .sound]) { granted, error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
             }
@@ -54,18 +54,26 @@ class NotificationManager {
             content.body = "Guardaste " + place.nombre! + " en su día, ¿te aptece acercarte?"
             break;
         }
+        content.sound = UNNotificationSound.default
         return content
     }
     
-    func setTriggerNotification() {
-        //let trigger = UNLocationNotificationTrigger(region: CLRegion, repeats: false)
+    func setTriggerNotification(region: CLRegion) -> UNLocationNotificationTrigger {
+        return UNLocationNotificationTrigger(region: region, repeats: false)
     }
     
-    func addNotification() {
-//        let request = UNNotificationRequest(identifier: "Notification", content: content, trigger: trigger)
-//        center.add(request, withCompletionHandler: nil)
+    func addNotificationRequest(identifier: String, content: UNMutableNotificationContent, trigger: UNLocationNotificationTrigger) {
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        center.add(request, withCompletionHandler: nil)
     }
 
-    
-    
+    func deleteNotificationRequest(identifiers: [String?]) {
+        if identifiers.count > 0 {
+            for index in 0..<identifiers.count {
+                if identifiers[index] != nil {
+                    center.removePendingNotificationRequests(withIdentifiers: [identifiers[index]!])
+                }
+            }
+        }
+    }
 }

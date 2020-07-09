@@ -12,14 +12,13 @@ class SettingsTableViewController: UITableViewController {
     
     let options: [String] = ["Borrar todos los datos", "Donar al desarrollador"]
     let coreDataBridge : CoreDataBridge = CoreDataBridge()
+    let locationManager: LocationManager = LocationManager()
+    let notificationManager: NotificationManager = NotificationManager()
     private let reusableCell = "SettingsCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.tableView.separatorStyle = .none
-
-
     }
 
     // MARK: - Table view data source
@@ -32,15 +31,12 @@ class SettingsTableViewController: UITableViewController {
         return options.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: reusableCell, for: indexPath) as! SettingsTableViewCell
         cell.settingsButtonLabel.text = options[indexPath.row]
-        
 
         return cell
     }
-    
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = self.tableView.cellForRow(at: indexPath) as! SettingsTableViewCell
@@ -51,8 +47,18 @@ class SettingsTableViewController: UITableViewController {
             let alertSheet = UIAlertController(title: "Borrado", message: "Estás a punto de borrar todos los datos guardados.", preferredStyle: .alert)
             
             alertSheet.addAction(UIAlertAction(title: "Borrar", style: .default, handler: { (action: UIAlertAction) in
+                
+                let placesToDelete = self.coreDataBridge.fetchSavedPlaces()
+                var identifiers: [String] = []
+                
+                for place in placesToDelete {
+                    identifiers.append(place.nombre!)
+                }
+                
                 self.coreDataBridge.deleteAllPlaces()
-               
+                self.locationManager.deleteAllRegions()
+                self.notificationManager.deleteNotificationRequest(identifiers: identifiers)
+                
             }))
             
             alertSheet.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction) in }))
