@@ -1,0 +1,57 @@
+
+/* Class = "UIViewController"; title = "New Place Modal"; ObjectID = "31j-vd-LkD"; */
+"31j-vd-LkD.title" = "New Place Modal";
+
+/* Class = "UITabBarItem"; title = "Ajustes"; ObjectID = "4fV-ZM-et1"; */
+"4fV-ZM-et1.title" = "Ajustes";
+
+/* Class = "UIBarButtonItem"; title = "Añadir"; ObjectID = "5NX-N4-PbD"; */
+"5NX-N4-PbD.title" = "Añadir";
+
+/* Class = "UINavigationItem"; title = "Places"; ObjectID = "7xd-CQ-dra"; */
+"7xd-CQ-dra.title" = "Places";
+
+/* Class = "UINavigationItem"; title = "Ajustes"; ObjectID = "9ps-HM-E2s"; */
+"9ps-HM-E2s.title" = "Ajustes";
+
+/* Class = "UITabBarItem"; title = "Lugares"; ObjectID = "Bmh-Bw-0xz"; */
+"Bmh-Bw-0xz.title" = "Lugares";
+
+/* Class = "UIBarButtonItem"; title = "newPlaceButton"; ObjectID = "FJy-aR-tRt"; */
+"FJy-aR-tRt.title" = "newPlaceButton";
+
+/* Class = "UITextView"; text = "Describelo un poco."; ObjectID = "GA2-cl-hj1"; */
+"GA2-cl-hj1.text" = "Describelo un poco.";
+
+/* Class = "UINavigationItem"; title = "Place"; ObjectID = "Icg-4m-m5x"; */
+"Icg-4m-m5x.title" = "Place";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "N49-lf-FWV"; */
+"N49-lf-FWV.title" = "Item";
+
+/* Class = "UIBarButtonItem"; title = "Guardar"; ObjectID = "bK8-Ef-icT"; */
+"bK8-Ef-icT.title" = "Guardar";
+
+/* Class = "UITextField"; placeholder = "Categoría"; ObjectID = "d5I-nf-eLC"; */
+"d5I-nf-eLC.placeholder" = "Categoría";
+
+/* Class = "UITextField"; text = "Nombre del lugar"; ObjectID = "eLO-Jj-vy3"; */
+"eLO-Jj-vy3.text" = "Nombre del lugar";
+
+/* Class = "UISearchBar"; placeholder = "Buscar lugar"; ObjectID = "fEb-2n-A48"; */
+"fEb-2n-A48.placeholder" = "Buscar lugar";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "g7o-Rt-uvx"; */
+"g7o-Rt-uvx.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Nuevo Place"; ObjectID = "pd8-YZ-B1c"; */
+"pd8-YZ-B1c.title" = "Nuevo Place";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "pyJ-3r-fAf"; */
+"pyJ-3r-fAf.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "Editar"; ObjectID = "t4k-9T-Q47"; */
+"t4k-9T-Q47.title" = "Editar";
+
+/* Class = "UIBarButtonItem"; title = "Cancelar"; ObjectID = "zZr-bD-7CC"; */
+"zZr-bD-7CC.title" = "Cancelar";
