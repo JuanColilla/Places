@@ -1,7 +1,63 @@
-/* 
-  Localizable.strings
-  Places
+"Category1" = "Emblematic building";
+"Category2" = "Point of interest";
+"Category3" = "Natural landscape";
+"Category4" = "Restaurant";
+"Category5" = "Route";
+"Category6" = "Memory";
+"Category7" = "Other";
 
-  Created by Juan Colilla on 09/07/2020.
-  Copyright © 2020 Juan Colilla. All rights reserved.
-*/
+// ------ NotificationManager -------
+// Place proximity notifications based on categories:
+"NotificationTitle" = "Nearby";
+"NotificationContent1" = "%@ it's close to you, would you like to get by and admire the views?";
+"NotificationContent2" = "Remember that %@ it's close to you, maybe you would like to get by.";
+"NotificationContent3" = "You're close to %@, it may be an opportinuty to go, disconnect and breathe deep.";
+"NotificationContent4" = "You're close to %@, today may be the day.";
+"NotificationContent5" = "You're good to go, would you like to take the saved %@?";
+"NotificationContent6" = "At %@ you save a special memory, would you like to relive it?";
+"NotificationContent7" = "You've saved %@ in the past, would you like to get by?";
+// ----------------------------------
+
+// --- PlaceDetailsViewController ---
+// Placeholder texts:
+"NoNameString" = "Without name";
+"NoDescriptionString" = "Without description";
+"NoCategoryString" = "Without category";
+"PlacePlaceholderText" = "Place's name";
+
+// Map Routing Alert:
+"MapRoutingAlertTitle" = "Open in Maps";
+"MapRoutingAlertText" = "A route to the Place will be traced.";
+
+// Map Routing Alert NO GPS:
+"MapRoutingNoLocationAlertContent" = "There is no location to trace a route.";
+
+// Standard Alert buttons:
+"AlertOKButton" = "Understood";
+"AlertKOButton" = "Cancel";
+
+// Photo Source Picker:
+"PhotoSourceAlertTitle" = "Photography";
+"PhotoSourceAlertMessage" = "Choose a source:";
+"PhotoSourceAlertCameraOption" = "Camera";
+"PhotoSourceAlertLibraryOption" = "Photo Library";
+
+// Camera not available alert:
+"CameraNotAvailableAlertTitle" = "Camera not available";
+"CameraNotAvailableAlertSubtitle" = "The camera is not available, choose an other source.";
+
+// No GPS data alert:
+"GPSNoDataAlertTitle" = "No GPS data";
+"GPSNoDataAlertMessage" = "The choosen photo does not have GPS data, you must set it manually.";
+// ----------------------------------
+
+// --- SettingsTableViewController ----
+// Options array:
+"Setting1" = "Delete all the data.";
+"Setting2" = "Buy me a coffee.";
+
+// Database delete alert:
+"DeleteAlertTitle" = "Deletion";
+"DeleteAlertMessage" = "You're going to delete ALL the data.";
+"DeleteAlertOKButton" = "Delete";
+// ------------------------------------

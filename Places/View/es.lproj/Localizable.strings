@@ -1,7 +1,64 @@
-/* 
-  Localizable.strings
-  Places
 
-  Created by Juan Colilla on 09/07/2020.
-  Copyright © 2020 Juan Colilla. All rights reserved.
-*/
+"Category1" = "Edificio emblemático";
+"Category2" = "Punto de interés";
+"Category3" = "Paisaje natural";
+"Category4" = "Restauración";
+"Category5" = "Ruta";
+"Category6" = "Recuerdo";
+"Category7" = "Otro";
+
+// ------ NotificationManager -------
+// Place proximity notifications based on categories:
+"NotificationTitle" = "Próximo a ti";
+"NotificationContent1" = "%@ está cerca, ¿qué te parece pasarte a admirar un poco las vistas?";
+"NotificationContent2" = "Recuerda que %@ está cerca, quizás te interesa pasarte un rato.";
+"NotificationContent3" = "Estás cerca de %@, puede ser buen momento para desconectar y respirar hondo.";
+"NotificationContent4" = "Estás cerca de %@, quizás hoy podría ser el día.";
+"NotificationContent5" = "Vas por buen camino, ¿qué te parece si tomas la ruta %@ que tienes guardada?";
+"NotificationContent6" = "En %@ guardas un recuerdo especial para ti, ¿te apetecería revivirlo?";
+"NotificationContent7" = "Guardaste %@en su día, ¿te aptece acercarte?";
+// ----------------------------------
+
+// --- PlaceDetailsViewController ---
+// Placeholder texts:
+"NoNameString" = "Sin nombre";
+"NoDescriptionString" = "Sin descripción";
+"NoCategoryString" = "Sin Categoría";
+"PlacePlaceholderText" = "Nombre del lugar";
+
+// Map Routing Alert:
+"MapRoutingAlertTitle" = "Abrir en mapas";
+"MapRoutingAlertText" = "Si decide continuar se trazará una ruta hacia la ubicación del lugar guardado.";
+
+// Map Routing Alert NO GPS:
+"MapRoutingNoLocationAlertContent" = "No existe ubicación a la que poder trazar indicaciones.";
+
+// Standard Alert buttons:
+"AlertOKButton" = "Entendido";
+"AlertKOButton" = "Cancelar";
+
+// Photo Source Picker:
+"PhotoSourceAlertTitle" = "Fotografía";
+"PhotoSourceAlertMessage" = "Escoge una fuente:";
+"PhotoSourceAlertCameraOption" = "Cámara";
+"PhotoSourceAlertLibraryOption" = "Fototeca";
+
+// Camera not available alert:
+"CameraNotAvailableAlertTitle" = "Cámara no accesible";
+"CameraNotAvailableAlertSubtitle" = "La cámara del dispositivo no está disponible, deberás usar otra fuente.";
+
+// No GPS data alert:
+"GPSNoDataAlertTitle" = "Sin datos GPS";
+"GPSNoDataAlertMessage" = "La fotografía seleccionada no dispone de datos GPS, deberás marcar la ubicación manualmente.";
+// ----------------------------------
+
+// --- SettingsTableViewController ----
+// Options array:
+"Setting1" = "Borrar todos los datos.";
+"Setting2" = "Donar al desarrollador.";
+
+// Database delete alert:
+"DeleteAlertTitle" = "Borrado";
+"DeleteAlertMessage" = "Estás a punto de borrar todos los datos guardados.";
+"DeleteAlertOKButton" = "Borrar";
+// ------------------------------------

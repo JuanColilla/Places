@@ -161,7 +161,6 @@
 		0D85A64E248178C700CCA1DD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = NO;
 				KnownAssetTags = (
 					New,
 				);

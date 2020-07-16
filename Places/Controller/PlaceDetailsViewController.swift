@@ -37,9 +37,9 @@ class PlaceDetailsViewController: UIViewController, UINavigationControllerDelega
             PHPhotoLibrary.requestAuthorization({ status in})
         } else {
             placeImageView.image = coreDataBridge.data2Image(data: (place.imagen!))
-            placeNameLabel.text = place.nombre ?? "Sin nombre"
-            placeDescriptionText.text = place.descripcion ?? "Sin descripción"
-            placeCategoryTextField.insertText(place.categoria ?? "Sin Categoría")
+            placeNameLabel.text = place.nombre ?? NSLocalizedString("NoNameString", comment: "")
+            placeDescriptionText.text = place.descripcion ?? NSLocalizedString("NoDescriptionString", comment: "")
+            placeCategoryTextField.insertText(place.categoria ?? NSLocalizedString("NoCategoryString", comment: ""))
             centerPlaceLocationOnMap()
         }
         picker.dataSource = self
@@ -59,17 +59,17 @@ class PlaceDetailsViewController: UIViewController, UINavigationControllerDelega
             destination.name = placeNameLabel.text ?? "Place"
             
             
-            let alert = UIAlertController(title: "Abrir en mapas", message: "Si decide continuar se trazará una ruta hacia la ubicación del lugar guardado.", preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("MapRoutingAlertTitle", comment: ""), message: NSLocalizedString("MapRoutingAlertText", comment: ""), preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: "Entendido", style: .default, handler: { (action: UIAlertAction) in
+            alert.addAction(UIAlertAction(title:  NSLocalizedString("AlertOKButton", comment: ""), style: .default, handler: { (action: UIAlertAction) in
                 MKMapItem.openMaps(with: [destination], launchOptions: nil)
             }))
-            alert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction) in}))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("AlertKOButton", comment: ""), style: .default, handler: { (action: UIAlertAction) in}))
             self.present(alert, animated: true)
             
         } else {
-            let alert = UIAlertController(title: "Abrir en mapas", message: "No existe ubicación a la que poder trazar indicaciones.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Entendido", style: .default, handler: { (action: UIAlertAction) in}))
+            let alert = UIAlertController(title: NSLocalizedString("MapRoutingAlertTitle", comment: ""), message: NSLocalizedString("MapRoutingNoLocationAlertContent", comment: ""), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("AlertOKButton", comment: ""), style: .default, handler: { (action: UIAlertAction) in}))
             self.present(alert, animated: true)
         }
     }
@@ -79,7 +79,7 @@ class PlaceDetailsViewController: UIViewController, UINavigationControllerDelega
         let locationPin = MKPointAnnotation()
         let coordenadas = CLLocationCoordinate2DMake(place.latitud, place.longitud)
         locationPin.coordinate = coordenadas
-        if placeNameLabel.text != "Nombre del lugar" {
+        if placeNameLabel.text != NSLocalizedString("PlacePlaceholderText", comment: "") {
             locationPin.title = placeNameLabel.text
         } else {
             locationPin.title = "Place"
@@ -104,7 +104,7 @@ class PlaceDetailsViewController: UIViewController, UINavigationControllerDelega
             let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 400, longitudinalMeters: 400)
             
             locationPin.coordinate = location.coordinate
-            if placeNameLabel.text != "Nombre del lugar" {
+            if placeNameLabel.text != NSLocalizedString("PlacePlaceholderText", comment: "") {
                 locationPin.title = placeNameLabel.text
             } else {
                 locationPin.title = "Place"
@@ -125,7 +125,7 @@ class PlaceDetailsViewController: UIViewController, UINavigationControllerDelega
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 400, longitudinalMeters: 400)
         
         locationPin.coordinate = coordinate
-        if placeNameLabel.text != "Nombre del lugar" {
+        if placeNameLabel.text != NSLocalizedString("PlacePlaceholderText", comment: "") {
             locationPin.title = placeNameLabel.text
         } else {
             locationPin.title = "Place"
@@ -149,27 +149,27 @@ class PlaceDetailsViewController: UIViewController, UINavigationControllerDelega
         
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
-        let actionSheet = UIAlertController(title: "Fotografía", message: "Escoge una fuente:", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: NSLocalizedString("PhotoSourceAlertTitle", comment: ""), message: NSLocalizedString("PhotoSourceAlertMessage", comment: ""), preferredStyle: .actionSheet)
         
-        actionSheet.addAction(UIAlertAction(title: "Cámara", style: .default, handler: { (action: UIAlertAction) in
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("PhotoSourceAlertCameraOption", comment: ""), style: .default, handler: { (action: UIAlertAction) in
             
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 imagePickerController.sourceType = .camera
                 self.present(imagePickerController, animated: true, completion: .none)
             } else {
-                let warning = UIAlertController(title: "Cámara no accesible", message: "La cámara del dispositivo no está disponible, deberás usar otra fuente.", preferredStyle: .alert)
+                let warning = UIAlertController(title: NSLocalizedString("CameraNotAvailableAlertTitle", comment: ""), message: NSLocalizedString("CameraNotAvailableAlertSubtitle", comment: ""), preferredStyle: .alert)
                 
-                warning.addAction(UIAlertAction(title: "Entendido", style: .default, handler: { (action: UIAlertAction) in}))
+                warning.addAction(UIAlertAction(title: NSLocalizedString("AlertOKButton", comment: ""), style: .default, handler: { (action: UIAlertAction) in}))
                 self.present(warning, animated: true)
             }
             
         }))
-        actionSheet.addAction(UIAlertAction(title: "Fototeca", style: .default, handler: { (action: UIAlertAction) in
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("PhotoSourceAlertLibraryOption", comment: ""), style: .default, handler: { (action: UIAlertAction) in
             imagePickerController.sourceType = .photoLibrary
             self.present(imagePickerController, animated: true, completion: .none)
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("AlertKOButton", comment: ""), style: .default, handler: nil))
         self.present(actionSheet, animated: true, completion: nil)
         
     }
@@ -179,10 +179,10 @@ class PlaceDetailsViewController: UIViewController, UINavigationControllerDelega
         place.id = UUID()
         place.imagen = coreDataBridge.image2Data(image: placeImageView.image!)
         place.nombre = placeNameLabel.text ?? "Place"
-        place.descripcion = placeDescriptionText.text ?? "Sin descripción"
+        place.descripcion = placeDescriptionText.text ?? NSLocalizedString("NoDescriptionString", comment: "")
         place.latitud = placeLocationMapView.centerCoordinate.latitude
         place.longitud = placeLocationMapView.centerCoordinate.longitude
-        place.categoria = placeCategoryTextField.text ?? "Sin categoría"
+        place.categoria = placeCategoryTextField.text ?? NSLocalizedString("NoCategoryString", comment: "")
         
         setNewPlaceNotification(place: place)
         
@@ -203,11 +203,11 @@ class PlaceDetailsViewController: UIViewController, UINavigationControllerDelega
             let placeToUpdate: Place = coreDataBridge.fetchPlaceByID(id: place.id!)
             
             placeToUpdate.imagen = coreDataBridge.image2Data(image: placeImageView.image!)
-            placeToUpdate.nombre = placeNameLabel.text ?? "Sin nombre"
-            placeToUpdate.descripcion = placeDescriptionText.text ?? "Sin descripción."
+            placeToUpdate.nombre = placeNameLabel.text ??  NSLocalizedString("NoNameString", comment: "")
+            placeToUpdate.descripcion = placeDescriptionText.text ?? NSLocalizedString("NoDescriptionString", comment: "")
             placeToUpdate.latitud = placeLocationMapView.annotations[0].coordinate.latitude
             placeToUpdate.longitud = placeLocationMapView.annotations[0].coordinate.longitude
-            placeToUpdate.categoria = placeCategoryTextField.text ?? "Sin Categoría"
+            placeToUpdate.categoria = placeCategoryTextField.text ??  NSLocalizedString("NoCategoryString", comment: "")
             
             coreDataBridge.saveContext()
         }
@@ -230,7 +230,7 @@ extension PlaceDetailsViewController: UIImagePickerControllerDelegate {
             if let location = metadata.location {
                 let locationPin = MKPointAnnotation()
                 locationPin.coordinate = location.coordinate
-                if placeNameLabel.text != "Nombre del lugar" {
+                if placeNameLabel.text != NSLocalizedString("PlacePlaceholderText", comment: "") {
                     locationPin.title = placeNameLabel.text
                 } else {
                     locationPin.title = "Place"
@@ -243,9 +243,9 @@ extension PlaceDetailsViewController: UIImagePickerControllerDelegate {
                 placeLocationMapView.selectAnnotation(locationPin, animated: true)
             } else {
                 
-                let warning = UIAlertController(title: "Sin datos GPS", message: "La fotografía seleccionada no dispone de datos GPS, deberás marcar la ubicación manualmente.", preferredStyle: .alert)
+                let warning = UIAlertController(title: NSLocalizedString("GPSNoDataAlertTitle", comment: ""), message: NSLocalizedString("GPSNoDataAlertMessage", comment: ""), preferredStyle: .alert)
                 
-                warning.addAction(UIAlertAction(title: "Entendido", style: .default, handler: { (action: UIAlertAction) in}))
+                warning.addAction(UIAlertAction(title: NSLocalizedString("AlertOKButton", comment: ""), style: .default, handler: { (action: UIAlertAction) in}))
                 picker.dismiss(animated: true, completion: {self.present(warning, animated: true)})
             }
             

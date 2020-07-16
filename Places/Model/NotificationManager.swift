@@ -30,28 +30,28 @@ class NotificationManager {
     
     func createNotification(place: Place) -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
-        content.title = "Próximo a ti"
+        content.title = NSLocalizedString("NotificationTitle", comment: "")
         switch(place.categoria) {
-        case "Restauración":
-            content.body = "Estás cerca de " + place.nombre! + ", quizás hoy podría ser el día."
+        case NSLocalizedString("Category1", comment: ""):
+            content.body = String(format: NSLocalizedString("NotificationContent1", comment: ""), place.nombre!)
             break;
-        case "Recuerdo":
-            content.body = "En " + place.nombre! + " guardas un recuerdo especial para ti, ¿te apetecería revivirlo?"
+        case NSLocalizedString("Category2", comment: ""):
+            content.body = String(format: NSLocalizedString("NotificationContent2", comment: ""), place.nombre!)
             break;
-        case "Edificio emblemático":
-            content.body = place.nombre! + " está cerca, ¿qué te parece pasarte a admirar un poco las vistas?"
+        case NSLocalizedString("Category3", comment: ""):
+            content.body =  String(format: NSLocalizedString("NotificationContent3", comment: ""), place.nombre!)
             break;
-        case "Paisaje natural":
-            content.body = "Estás cerca de " + place.nombre! + ", puede ser buen momento para desconectar y respirar hondo."
+        case NSLocalizedString("Category4", comment: ""):
+            content.body =  String(format: NSLocalizedString("NotificationContent4", comment: ""), place.nombre!)
             break;
-        case "Ruta":
-            content.body = "Vas por buen camino, ¿qué te parece si tomas la ruta " + place.nombre! + " que tienes guardada?"
+        case NSLocalizedString("Category5", comment: ""):
+            content.body =  String(format: NSLocalizedString("NotificationContent5", comment: ""), place.nombre!)
             break;
-        case "Punto de interés":
-            content.body = "Recuerda que " + place.nombre! + " está cerca, quizás te interesa pasarte un rato."
+        case NSLocalizedString("Category6", comment: ""):
+            content.body =  String(format: NSLocalizedString("NotificationContent6", comment: ""), place.nombre!)
             break;
         default:
-            content.body = "Guardaste " + place.nombre! + " en su día, ¿te aptece acercarte?"
+            content.body =  String(format: NSLocalizedString("NotificationContent7", comment: ""), place.nombre!)
             break;
         }
         content.sound = UNNotificationSound.default

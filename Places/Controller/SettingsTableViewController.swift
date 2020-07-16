@@ -10,7 +10,7 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
     
-    let options: [String] = ["Borrar todos los datos", "Donar al desarrollador"]
+    let options: [String] = [NSLocalizedString("Setting1", comment: ""), NSLocalizedString("Setting2", comment: "")]
     let coreDataBridge : CoreDataBridge = CoreDataBridge()
     let locationManager: LocationManager = LocationManager()
     let notificationManager: NotificationManager = NotificationManager()
@@ -44,9 +44,9 @@ class SettingsTableViewController: UITableViewController {
         selectedCell.isSelected = false
         
         if (selectedCell.settingsButtonLabel.text == options[0]) {
-            let alertSheet = UIAlertController(title: "Borrado", message: "Estás a punto de borrar todos los datos guardados.", preferredStyle: .alert)
+            let alertSheet = UIAlertController(title: NSLocalizedString("DeleteAlertTitle", comment: ""), message: NSLocalizedString("DeleteAlertMessage", comment: ""), preferredStyle: .alert)
             
-            alertSheet.addAction(UIAlertAction(title: "Borrar", style: .default, handler: { (action: UIAlertAction) in
+            alertSheet.addAction(UIAlertAction(title: NSLocalizedString("DeleteAlertOKButton", comment: ""), style: .default, handler: { (action: UIAlertAction) in
                 
                 let placesToDelete = self.coreDataBridge.fetchSavedPlaces()
                 var identifiers: [String] = []
@@ -61,7 +61,7 @@ class SettingsTableViewController: UITableViewController {
                 
             }))
             
-            alertSheet.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: { (action: UIAlertAction) in }))
+            alertSheet.addAction(UIAlertAction(title: NSLocalizedString("AlertKOButton", comment: ""), style: .default, handler: { (action: UIAlertAction) in }))
             
             self.present(alertSheet, animated: true, completion: nil)
             
